@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="foo bar baz">
+<meta name="keywords" content="V8,nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debug V8 in Node.js Core with GDB">
+<meta property="og:url" content="http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/index.html">
+<meta property="og:site_name" content="Franziska Hinkelmann">
+<meta property="og:description" content="foo bar baz">
+<meta property="og:updated_time" content="2017-12-18T15:27:41.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Debug V8 in Node.js Core with GDB">
+<meta name="twitter:description" content="foo bar baz">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Debug V8 in Node.js Core with GDB</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="http://github.com/fhinkel">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/03/25/Tools-for-Node-js-Contributors/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/01/01/hello-world/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&text=Debug V8 in Node.js Core with GDB"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&is_video=false&description=Debug V8 in Node.js Core with GDB"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Debug V8 in Node.js Core with GDB&body=Check out this article: http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&name=Debug V8 in Node.js Core with GDB&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Debug V8 in Node.js Core with GDB
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Franziska Hinkelmann</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-01-16T23:00:00.000Z" itemprop="datePublished">2017-01-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/V8/">V8</a>, <a class="tag-link" href="/tags/nodejs/">nodejs</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Or-in-other-projects-that-embed-V8"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</h2><p>If you contribute to Node core, you will eventually need to debug C++ code in<br><a href="https://github.com/nodejs/node/tree/master/src" target="_blank" rel="noopener">/node/src/</a>. If you’ve done<br>this before, you might have noticed that GDB’s print command is not helpful when<br>working with V8 code.</p>
+<pre><code> Use 
+ from V8. 
+(gdb) job obj   # Print v8::HeapObject*.
+(gdb) jlh obj   # Print v8::Local handle.
+
+# Somewhere in the code
+v8::Local&lt;v8::String&gt; class_name =
+    FIXED_ONE_BYTE_STRING(env-&gt;isolate(), &quot;ContextifyScript&quot;);
+
+# Looking at this variable in GDB
+(gdb) print class_name
+$1 = {val_ = 0x51eb3a0} 
+</code></pre><p>We’d really like to see “ContextifyScript” mentioned in the output, not a memory<br>address.</p>
+<p>Node core uses V8 as its JavaScript engine. A lot of variables in V8 are either<br>v8::Values wrapped in v8::Local handles, or v8::internal::HeapObjects wrapped in<br>v8::internal::Handle handles. Handles are needed for the garbage collector.<br>You’ll find v8::Locals all over the <a href="https://github.com/nodejs/node/search?l=C++&amp;q=Local" target="_blank" rel="noopener">Node core<br>sources</a>. However, if you<br>want to debug them, you need to do something a little more involved than just<br>typing <em>print</em>.</p>
+<p>V8 provides a gdbinit file with <a href="https://sourceware.org/gdb/onlinedocs/gdb/Define.html" target="_blank" rel="noopener">user-defined<br>commands</a> for inspecting<br>V8 heap objects. They allow us to easily debug V8 objects. Let’s go through it<br>step-by-step how to use these commands.</p>
+<p>Get the <a href="https://github.com/v8/v8/blame/master/tools/gdbinit" target="_blank" rel="noopener">gdbinit file</a> from<br>the V8 repo and save it as .gdbinit in your Node directory or home directory.<br>You can also pass the file to GDB with -x. If you save it in your Node folder,<br>you probably want to add it to<br><a href="https://help.github.com/articles/ignoring-files/#explicit-repository-excludes" target="_blank" rel="noopener">.git/info/exclude</a>.</p>
+<p>Next, you need a debug build of Node.</p>
+<pre><code># Build the Node debug build. We assume you already have the Node sources in $NODE.
+$ cd $NODE
+$ ./configure --debug &amp;&amp; make -j8
+</code></pre><p>Say we are working on the vm module in node_contextify.cc and need to figure out<br>what’s going on there. We call node on a test case (or any other JavaScript file<br>for that matter) that uses the code that we want to debug.</p>
+<pre><code># Start gdb. Node_g is the debug build executable.
+$ gdb --args node_g test/parallel/test-vm-context.js
+</code></pre><p>Let’s set a few break points in the functions that we are interested in.</p>
+<pre><code># Set a breakpoint. You can use filenames or function names. Code completion works here!
+(gdb) break node_contextify.cc:380
+Breakpoint 1 at 0x2214955: file ../src/node_contextify.cc, line 380.
+
+(gdb) break node::ContextifyContext::GlobalPropertyQueryCallback
+Breakpoint 2 at 0x2214aa2: file ../src/node_contextify.cc, line 409.
+
+# Run until you hit a breakpoint.
+(gdb) run
+Starting program: ...
+Breakpoint 1, node::ContextifyContext::GlobalPropertySetterCallback (property=..., value=..., args=...) at ../src/node_contextify.cc:380
+380     ASSIGN_OR_RETURN_UNWRAP(&amp;ctx, args.Data().As&lt;Object&gt;());
+
+# If you want to set a breakpoint inside V8, don&apos;t forget the v8::internal namespace.
+(gdb) b v8::internal::JSReceiver::GetPropertyAttributes
+Breakpoint 3 at 0x15c4032: v8::internal::JSReceiver::GetPropertyAttributes. (2 locations)
+</code></pre><p>Now the debugger has stopped at Breakpoint 1. The code is using the <a href="https://github.com/v8/v8/blob/master/include/v8.h" target="_blank" rel="noopener">V8<br>API</a> and we have several<br>v8::Local handles. Let’s see what their values are.</p>
+<pre><code># A regular print on v8::Local handles is not very helpful.
+(gdb) print property
+$1 = {val_ = 0x7ffed1702eb0}
+(gdb) print value
+$2 = {val_ = 0x7ffed1702ea8}
+
+# To see the value of a local handle, use the jlh command provided by gdbinit. If you get &quot;Undefined command&quot;, double check the location and name (don&apos;t forget the dot!) of your .gdbinit.
+(gdb) jlh property
+#foo
+(gdb) jlh value
+3
+# As expected, because the test is setting foo = 3.
+</code></pre><p>If we use jlh instead of print on our first example, we see the underlying<br>string (probably what we’re interested in) and not a memory address.</p>
+<pre><code># Somewhere in the code
+v8::Local&lt;v8::String&gt; class_name =
+    FIXED_ONE_BYTE_STRING(env-&gt;isolate(), &quot;ContextifyScript&quot;);
+
+# Looking at this variable in GDB
+(gdb) print class_name
+$1 = {val_ = 0x51eb3a0}
+
+(gdb) jlh class_name
+&quot;ContextifyScript&quot;
+</code></pre><p><strong>To sum up, if you want to print the content of a v8::Local handle, use jlh.</strong></p>
+<p>If you wonder what <em>jlh</em> stands for, it stands for “job local handle”. <em>job</em> is<br>V8’s user-defined GDB command for printing v8::internal::HeapObjects, which are<br>the very common objects in V8.</p>
+<pre><code>(gdb) job heap_object_ptr
+</code></pre><p>Not V8 specific, but here are a few more helpful GDB commands. Happy debugging!</p>
+<pre><code># Run until breakpoint or the end
+(gdb) r
+# Go to the next line.
+(gdb) n
+# Continue to the next breakpoint. 
+(gdb) c
+# Step into a function.
+(gdb) s
+
+# List all your breakpoints, enable and disable them.
+(gdb) info b
+(gdb) disable 3
+(gdb) enable 3
+
+# You can shorten all commands in gdb, they only need to be so long that they are unique. Like p for print. 
+
+# Make use of tab completion, arrow up-down, reverse-i-search, and readline commands.
+
+# Enter repeats the last command.
+</code></pre><p>Thanks to Yang Guo for <a href="https://codereview.chromium.org/2628293003" target="_blank" rel="noopener">adding his jlh command to V8’s<br>gdbinit</a> and thanks to Andreas Haas<br>for proofreading and valuable corrections.</p>
+<ul>
+<li><a href="https://medium.com/tag/programming?source=post" target="_blank" rel="noopener">Programming</a></li>
+<li><a href="https://medium.com/tag/javascript?source=post" target="_blank" rel="noopener">JavaScript</a></li>
+<li><a href="https://medium.com/tag/nodejs?source=post" target="_blank" rel="noopener">Nodejs</a></li>
+<li><a href="https://medium.com/tag/gdb?source=post" target="_blank" rel="noopener">Gdb</a></li>
+<li><a href="https://medium.com/tag/v8?source=post" target="_blank" rel="noopener">V8</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="http://github.com/fhinkel">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&text=Debug V8 in Node.js Core with GDB"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&is_video=false&description=Debug V8 in Node.js Core with GDB"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Debug V8 in Node.js Core with GDB&body=Check out this article: http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&title=Debug V8 in Node.js Core with GDB"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/&name=Debug V8 in Node.js Core with GDB&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 F. Hinkelmann
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="http://github.com/fhinkel">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-111379301-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+
