@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you canexpand the little Git annotations in thegutterlike in WebStorm. They show the diff inline in the editor and make">
+    <meta name="description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you can expand the little Git annotations in the gutter like in WebStorm. They show the diff inline in the editor and ma">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="New in VS Code: Inline Change Review">
 <meta property="og:url" content="http://fhinkel.github.io/2017/11/26/New-in-VS-Code-Inline-Change-Review/index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann">
-<meta property="og:description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you canexpand the little Git annotations in thegutterlike in WebStorm. They show the diff inline in the editor and make">
+<meta property="og:description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you can expand the little Git annotations in the gutter like in WebStorm. They show the diff inline in the editor and ma">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*svHpYnE3CPyZ6HajAXb7QQ.png">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*9ACdd-yopp80ufoNKFrorw.png">
-<meta property="og:updated_time" content="2017-12-18T16:25:39.991Z">
+<meta property="og:updated_time" content="2017-12-18T17:32:34.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="New in VS Code: Inline Change Review">
-<meta name="twitter:description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you canexpand the little Git annotations in thegutterlike in WebStorm. They show the diff inline in the editor and make">
+<meta name="twitter:description" content="Expandable Git annotations in the gutter like in WebStorm 🎉Since VS Code 1.18, you can expand the little Git annotations in the gutter like in WebStorm. They show the diff inline in the editor and ma">
 <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*svHpYnE3CPyZ6HajAXb7QQ.png">
     
     
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-&#x1F389;" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm &#x1F389;"></a>Expandable Git annotations in the gutter like in WebStorm &#x1F389;</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-&#x1F389;" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm &#x1F389;"></a>Expandable Git annotations in the gutter like in WebStorm &#x1F389;</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -135,17 +135,15 @@
 
     </div>
   </header>
-  
-
   <div class="content" itemprop="articleBody">
-    <h2 id="Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm 🎉"></a>Expandable Git annotations in the gutter like in WebStorm 🎉</h2><p>Since VS Code <a href="https://code.visualstudio.com/updates/v1_18" target="_blank" rel="noopener">1.18</a>, you can<br>expand the little Git <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_gutter-indicators" target="_blank" rel="noopener">annotations in the<br>gutter</a><br>like in WebStorm. They show the diff inline in the editor and make individual<br>reverts easy.</p>
-<p>The Git annotations in the gutter are subtle yet helpful. <strong>They instantly draw<br>my eyes to the lines that I changed.</strong> Together with the inline view of the diff<br>and the revert button, they are invaluable to me.</p>
-<p>I need the inline change review when I delete too many lines or type in the<br>wrong window. I need it when I make multiple changes and realize one of them<br>doesn’t work. I need it when I refactor and want to compare to the previous<br>version. I’m so happy this feature is in <a href="https://code.visualstudio.com/updates/v1_18#_inline-change-review" target="_blank" rel="noopener">VS Code<br>now</a> ❤️. I<br>could do all of this on the command line, but inline is clearer because I don’t<br>have to adjust to a different view or sort through all the other changes.</p>
-<p><img src="https://cdn-images-1.medium.com/max/1600/1*svHpYnE3CPyZ6HajAXb7QQ.png" alt=""><br><span class="figcaption_hack">Annotations that show Git changes. Blue means changed, green added, and red<br>deleted lines.</span></p>
-<p>A blue bar in the gutter indicates that the line was changed. For new lines, the<br>bar is green. A little red triangle symbolizes deleted lines.</p>
-<p><img src="https://cdn-images-1.medium.com/max/1600/1*9ACdd-yopp80ufoNKFrorw.png" alt=""><br><span class="figcaption_hack">The annotations in the gutter expand! Click on an annotation in the gutter to<br>see the changes. You can also revert right there if you need to.</span></p>
-<p>Click on a gutter annotation to see the changes. I often find this more<br>convenient than looking at the diff in other views. There is a revert button<br>next to every change. In many cases, clicking the button is much quicker than<br>using <code>git checkout --patch</code> (tough <code>git commit -p</code> is one of my favorite<br>tools).</p>
-<p>If you are switching over from WebStorm to VS Code, <a href="https://medium.com/@jawache" target="_blank" rel="noopener">Asim<br>Hussain</a> has a <a href="https://medium.com/@jawache/from-webstorm-to-vs-code-bd01ccc92aaf" target="_blank" rel="noopener">video with great tips for<br>converts</a>.</p>
+    <h1 id="Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm 🎉"></a>Expandable Git annotations in the gutter like in WebStorm 🎉</h1><p>Since VS Code <a href="https://code.visualstudio.com/updates/v1_18" target="_blank" rel="noopener">1.18</a>, you can expand the little Git <a href="https://code.visualstudio.com/docs/editor/versioncontrol#_gutter-indicators" target="_blank" rel="noopener">annotations in the gutter</a> like in WebStorm. They show the diff inline in the editor and make individual reverts easy.</p>
+<p>The Git annotations in the gutter are subtle yet helpful. <strong>They instantly draw my eyes to the lines that I changed.</strong> Together with the inline view of the diff and the revert button, they are invaluable to me.</p>
+<p>I need the inline change review when I delete too many lines or type in the wrong window. I need it when I make multiple changes and realize one of them doesn’t work. I need it when I refactor and want to compare to the previous version. I’m so happy this feature is in <a href="https://code.visualstudio.com/updates/v1_18#_inline-change-review" target="_blank" rel="noopener">VS Code now</a> ❤️. I could do all of this on the command line, but inline is clearer because I don’t have to adjust to a different view or sort through all the other changes.</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*svHpYnE3CPyZ6HajAXb7QQ.png" alt=""><br><span class="figcaption_hack">Annotations that show Git changes. Blue means changed, green added, and red deleted lines.</span></p>
+<p>A blue bar in the gutter indicates that the line was changed. For new lines, the bar is green. A little red triangle symbolizes deleted lines.</p>
+<p><img src="https://cdn-images-1.medium.com/max/1600/1*9ACdd-yopp80ufoNKFrorw.png" alt=""><br><span class="figcaption_hack">The annotations in the gutter expand! Click on an annotation in the gutter to see the changes. You can also revert right there if you need to.</span></p>
+<p>Click on a gutter annotation to see the changes. I often find this more convenient than looking at the diff in other views. There is a revert button next to every change. In many cases, clicking the button is much quicker than using <code>git checkout --patch</code> (tough <code>git commit -p</code> is one of my favorite tools).</p>
+<p>If you are switching over from WebStorm to VS Code, <a href="https://medium.com/@jawache" target="_blank" rel="noopener">Asim Hussain</a> has a <a href="https://medium.com/@jawache/from-webstorm-to-vs-code-bd01ccc92aaf" target="_blank" rel="noopener">video with great tips for converts</a>.</p>
 
   </div>
 </article>
@@ -172,7 +170,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-&#x1F389;" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm &#x1F389;"></a>Expandable Git annotations in the gutter like in WebStorm &#x1F389;</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-&#x1F389;" class="headerlink" title="Expandable Git annotations in the gutter like in WebStorm &#x1F389;"></a>Expandable Git annotations in the gutter like in WebStorm &#x1F389;</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -230,11 +228,8 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="/js/main.js"></script>
 <!-- search -->
 

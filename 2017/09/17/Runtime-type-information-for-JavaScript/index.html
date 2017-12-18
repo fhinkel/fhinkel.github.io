@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can nowcollect type information. V8 is Google’s open source JavaScript engine">
+    <meta name="description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta name="keywords" content="V8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runtime Type Information for JavaScript">
 <meta property="og:url" content="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann">
-<meta property="og:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can nowcollect type information. V8 is Google’s open source JavaScript engine">
+<meta property="og:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*CLdktAPyagGXXZQYUS5UtA.png">
-<meta property="og:updated_time" content="2017-12-18T15:00:58.697Z">
+<meta property="og:updated_time" content="2017-12-18T17:30:32.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime Type Information for JavaScript">
-<meta name="twitter:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can nowcollect type information. V8 is Google’s open source JavaScript engine">
+<meta name="twitter:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/2000/1*CLdktAPyagGXXZQYUS5UtA.png">
     
     
@@ -100,7 +100,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome-V8-can-now-collect-type-information-at-runtime"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-V8-can-now-collect-type-information-at-runtime"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -136,35 +136,26 @@
 
     </div>
   </header>
-  
-
   <div class="content" itemprop="articleBody">
-    <h2 id="Chrome-V8-can-now-collect-type-information-at-runtime"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</h2><p>Get types like string, number, null, or custom classes at runtime. V8 can now<br>collect type information. V8 is Google’s open source JavaScript engine. Chrome,<br>Node.js, and many otherapplications use V8. This type profiler is built into the<br>engine, the information is not statically inferred.</p>
-<p>JavaScript is a dynamically typed language. But most code is written with fixed<br>types in mind. When debugging JavaScript, itis helpful to know the types of<br>variables and parameters at runtime. It is often hard to infer types for complex<br>code. Type profiling provides this information at runtime.</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*CLdktAPyagGXXZQYUS5UtA.png" alt=""><br><span class="figcaption_hack"><a href="https://github.com/fhinkel/type-profile" target="_blank" rel="noopener">https://github.com/fhinkel/type-profile</a></span></p>
+    <h1 id="Chrome-V8-can-now-collect-type-information-at-runtime"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</h1><p>Get types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many otherapplications use V8. This type profiler is built into the engine, the information is not statically inferred.</p>
+<p>JavaScript is a dynamically typed language. But most code is written with fixed types in mind. When debugging JavaScript, itis helpful to know the types of variables and parameters at runtime. It is often hard to infer types for complex code. Type profiling provides this information at runtime.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*CLdktAPyagGXXZQYUS5UtA.png" alt=""> <span class="figcaption_hack"><a href="https://github.com/fhinkel/type-profile" target="_blank" rel="noopener">https://github.com/fhinkel/type-profile</a></span></p>
 <pre><code>function foo(x) {
     if (x &lt; 2) {
       return 42;
     }
     return &quot;What are the return types of foo?&quot;;
   }
-</code></pre><p>The static definition of <code>foo()</code> does not hold any information about the<br>parameters with which <code>foo</code> is called. In this simple case, we can deduct the<br>return types, <code>number</code> and <code>string</code>. For more complex cases that is often<br>impossible, though. But at runtime, it is clear with which types <code>foo</code> is being<br>called. Runtime type information collects exactly this information.</p>
-<p>Type profiling is implemented in V8 and can be used via the <strong>V8 inspector<br>protocol</strong>. If you get <a href="https://github.com/v8/node" target="_blank" rel="noopener">Node.js with the newest V8</a>,<br>you can test it yourself. In a few weeks a newer V8 will land in Node and type<br>profile will be available in regular Node releases.</p>
-<p><strong>One of the intended use cases is to auto-generate JSDoc, TypeScript, or Flow<br>annotations</strong>. As type profiling is available via <a href="https://nodejs.org/api/inspector.html" target="_blank" rel="noopener">Node’s<br>inspector</a>, you can build your own tools<br>with it to fit your needs. <a href="https://github.com/fhinkel/type-profile" target="_blank" rel="noopener">Here’s</a> a<br>demo to show some basic usage.</p>
+</code></pre><p>The static definition of <code>foo()</code> does not hold any information about the parameters with which <code>foo</code> is called. In this simple case, we can deduct the return types, <code>number</code> and <code>string</code>. For more complex cases that is often impossible, though. But at runtime, it is clear with which types <code>foo</code> is being called. Runtime type information collects exactly this information.</p>
+<p>Type profiling is implemented in V8 and can be used via the <strong>V8 inspector protocol</strong>. If you get <a href="https://github.com/v8/node" target="_blank" rel="noopener">Node.js with the newest V8</a>, you can test it yourself. In a few weeks a newer V8 will land in Node and type profile will be available in regular Node releases.</p>
+<p><strong>One of the intended use cases is to auto-generate JSDoc, TypeScript, or Flow annotations</strong>. As type profiling is available via <a href="https://nodejs.org/api/inspector.html" target="_blank" rel="noopener">Node’s inspector</a>, you can build your own tools with it to fit your needs. <a href="https://github.com/fhinkel/type-profile" target="_blank" rel="noopener">Here’s</a> a demo to show some basic usage.</p>
 <blockquote>
-<p>I look forward to all the tools the community will come up with that use type<br>profile.</p>
+<p>I look forward to all the tools the community will come up with that use type profile.</p>
 </blockquote>
-<p>I look forward to all the tools the community will come up with that use type<br>profile. I’m sure there are many use cases that I haven’t even considered yet.<br>If you are already working on a prototype, please share!</p>
+<p>I look forward to all the tools the community will come up with that use type profile. I’m sure there are many use cases that I haven’t even considered yet.  If you are already working on a prototype, please share!</p>
 <p><span class="figcaption_hack">foo() has only been called with Objects, it always returned strings.</span></p>
 <p><span class="figcaption_hack">foo() has been called with strings and Rectangles. It always returns strings.</span></p>
 <p><span class="figcaption_hack">foo() has returned strings and numbers.</span></p>
-<ul>
-<li><a href="https://medium.com/tag/javascript?source=post" target="_blank" rel="noopener">JavaScript</a></li>
-<li><a href="https://medium.com/tag/v8?source=post" target="_blank" rel="noopener">V8</a></li>
-<li><a href="https://medium.com/tag/typescript?source=post" target="_blank" rel="noopener">Typescript</a></li>
-<li><a href="https://medium.com/tag/compilers?source=post" target="_blank" rel="noopener">Compilers</a></li>
-<li><a href="https://medium.com/tag/nodejs?source=post" target="_blank" rel="noopener">Nodejs</a></li>
-</ul>
 
   </div>
 </article>
@@ -191,7 +182,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome-V8-can-now-collect-type-information-at-runtime"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-V8-can-now-collect-type-information-at-runtime"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -249,11 +240,8 @@
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="/js/main.js"></script>
 <!-- search -->
 

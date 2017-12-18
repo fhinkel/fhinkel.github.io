@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann">
 <meta property="og:description" content="foo bar baz">
-<meta property="og:updated_time" content="2017-12-18T15:27:41.173Z">
+<meta property="og:updated_time" content="2017-12-18T17:24:05.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Debug V8 in Node.js Core with GDB">
 <meta name="twitter:description" content="foo bar baz">
@@ -98,7 +98,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -134,13 +134,12 @@
 
     </div>
   </header>
-  
-
   <div class="content" itemprop="articleBody">
-    <h2 id="Or-in-other-projects-that-embed-V8"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</h2><p>If you contribute to Node core, you will eventually need to debug C++ code in<br><a href="https://github.com/nodejs/node/tree/master/src" target="_blank" rel="noopener">/node/src/</a>. If you’ve done<br>this before, you might have noticed that GDB’s print command is not helpful when<br>working with V8 code.</p>
-<pre><code> Use 
- from V8. 
-(gdb) job obj   # Print v8::HeapObject*.
+    <h1 id="Or-in-other-projects-that-embed-V8"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</h1><p>If you contribute to Node core, you will eventually need to debug C++ code in <a href="https://github.com/nodejs/node/tree/master/src" target="_blank" rel="noopener">/node/src/</a>. If you’ve done this before, you might have noticed that GDB’s print command is not helpful when working with V8 code.</p>
+<blockquote>
+<p>TL;DR Use .gdbinit from V8. </p>
+</blockquote>
+<pre><code>(gdb) job obj   # Print v8::HeapObject*.
 (gdb) jlh obj   # Print v8::Local handle.
 
 # Somewhere in the code
@@ -150,15 +149,15 @@ v8::Local&lt;v8::String&gt; class_name =
 # Looking at this variable in GDB
 (gdb) print class_name
 $1 = {val_ = 0x51eb3a0} 
-</code></pre><p>We’d really like to see “ContextifyScript” mentioned in the output, not a memory<br>address.</p>
-<p>Node core uses V8 as its JavaScript engine. A lot of variables in V8 are either<br>v8::Values wrapped in v8::Local handles, or v8::internal::HeapObjects wrapped in<br>v8::internal::Handle handles. Handles are needed for the garbage collector.<br>You’ll find v8::Locals all over the <a href="https://github.com/nodejs/node/search?l=C++&amp;q=Local" target="_blank" rel="noopener">Node core<br>sources</a>. However, if you<br>want to debug them, you need to do something a little more involved than just<br>typing <em>print</em>.</p>
-<p>V8 provides a gdbinit file with <a href="https://sourceware.org/gdb/onlinedocs/gdb/Define.html" target="_blank" rel="noopener">user-defined<br>commands</a> for inspecting<br>V8 heap objects. They allow us to easily debug V8 objects. Let’s go through it<br>step-by-step how to use these commands.</p>
-<p>Get the <a href="https://github.com/v8/v8/blame/master/tools/gdbinit" target="_blank" rel="noopener">gdbinit file</a> from<br>the V8 repo and save it as .gdbinit in your Node directory or home directory.<br>You can also pass the file to GDB with -x. If you save it in your Node folder,<br>you probably want to add it to<br><a href="https://help.github.com/articles/ignoring-files/#explicit-repository-excludes" target="_blank" rel="noopener">.git/info/exclude</a>.</p>
+</code></pre><p>We’d really like to see “ContextifyScript” mentioned in the output, not a memory address.</p>
+<p>Node core uses V8 as its JavaScript engine. A lot of variables in V8 are either v8::Values wrapped in v8::Local handles, or v8::internal::HeapObjects wrapped in v8::internal::Handle handles. Handles are needed for the garbage collector.  You’ll find v8::Locals all over the <a href="https://github.com/nodejs/node/search?l=C++&amp;q=Local" target="_blank" rel="noopener">Node core sources</a>. However, if you want to debug them, you need to do something a little more involved than just typing <em>print</em>.</p>
+<p>V8 provides a gdbinit file with <a href="https://sourceware.org/gdb/onlinedocs/gdb/Define.html" target="_blank" rel="noopener">user-defined commands</a> for inspecting V8 heap objects. They allow us to easily debug V8 objects. Let’s go through it step-by-step how to use these commands.</p>
+<p>Get the <a href="https://github.com/v8/v8/blame/master/tools/gdbinit" target="_blank" rel="noopener">gdbinit file</a> from the V8 repo and save it as .gdbinit in your Node directory or home directory.  You can also pass the file to GDB with -x. If you save it in your Node folder, you probably want to add it to <a href="https://help.github.com/articles/ignoring-files/#explicit-repository-excludes" target="_blank" rel="noopener">.git/info/exclude</a>.</p>
 <p>Next, you need a debug build of Node.</p>
 <pre><code># Build the Node debug build. We assume you already have the Node sources in $NODE.
 $ cd $NODE
 $ ./configure --debug &amp;&amp; make -j8
-</code></pre><p>Say we are working on the vm module in node_contextify.cc and need to figure out<br>what’s going on there. We call node on a test case (or any other JavaScript file<br>for that matter) that uses the code that we want to debug.</p>
+</code></pre><p>Say we are working on the vm module in node_contextify.cc and need to figure out what’s going on there. We call node on a test case (or any other JavaScript file for that matter) that uses the code that we want to debug.</p>
 <pre><code># Start gdb. Node_g is the debug build executable.
 $ gdb --args node_g test/parallel/test-vm-context.js
 </code></pre><p>Let’s set a few break points in the functions that we are interested in.</p>
@@ -178,7 +177,7 @@ Breakpoint 1, node::ContextifyContext::GlobalPropertySetterCallback (property=..
 # If you want to set a breakpoint inside V8, don&apos;t forget the v8::internal namespace.
 (gdb) b v8::internal::JSReceiver::GetPropertyAttributes
 Breakpoint 3 at 0x15c4032: v8::internal::JSReceiver::GetPropertyAttributes. (2 locations)
-</code></pre><p>Now the debugger has stopped at Breakpoint 1. The code is using the <a href="https://github.com/v8/v8/blob/master/include/v8.h" target="_blank" rel="noopener">V8<br>API</a> and we have several<br>v8::Local handles. Let’s see what their values are.</p>
+</code></pre><p>Now the debugger has stopped at Breakpoint 1. The code is using the <a href="https://github.com/v8/v8/blob/master/include/v8.h" target="_blank" rel="noopener">V8 API</a> and we have several v8::Local handles. Let’s see what their values are.</p>
 <pre><code># A regular print on v8::Local handles is not very helpful.
 (gdb) print property
 $1 = {val_ = 0x7ffed1702eb0}
@@ -191,7 +190,7 @@ $2 = {val_ = 0x7ffed1702ea8}
 (gdb) jlh value
 3
 # As expected, because the test is setting foo = 3.
-</code></pre><p>If we use jlh instead of print on our first example, we see the underlying<br>string (probably what we’re interested in) and not a memory address.</p>
+</code></pre><p>If we use jlh instead of print on our first example, we see the underlying string (probably what we’re interested in) and not a memory address.</p>
 <pre><code># Somewhere in the code
 v8::Local&lt;v8::String&gt; class_name =
     FIXED_ONE_BYTE_STRING(env-&gt;isolate(), &quot;ContextifyScript&quot;);
@@ -203,7 +202,7 @@ $1 = {val_ = 0x51eb3a0}
 (gdb) jlh class_name
 &quot;ContextifyScript&quot;
 </code></pre><p><strong>To sum up, if you want to print the content of a v8::Local handle, use jlh.</strong></p>
-<p>If you wonder what <em>jlh</em> stands for, it stands for “job local handle”. <em>job</em> is<br>V8’s user-defined GDB command for printing v8::internal::HeapObjects, which are<br>the very common objects in V8.</p>
+<p>If you wonder what <em>jlh</em> stands for, it stands for “job local handle”. <em>job</em> is V8’s user-defined GDB command for printing v8::internal::HeapObjects, which are the very common objects in V8.</p>
 <pre><code>(gdb) job heap_object_ptr
 </code></pre><p>Not V8 specific, but here are a few more helpful GDB commands. Happy debugging!</p>
 <pre><code># Run until breakpoint or the end
@@ -225,7 +224,7 @@ $1 = {val_ = 0x51eb3a0}
 # Make use of tab completion, arrow up-down, reverse-i-search, and readline commands.
 
 # Enter repeats the last command.
-</code></pre><p>Thanks to Yang Guo for <a href="https://codereview.chromium.org/2628293003" target="_blank" rel="noopener">adding his jlh command to V8’s<br>gdbinit</a> and thanks to Andreas Haas<br>for proofreading and valuable corrections.</p>
+</code></pre><p>Thanks to Yang Guo for <a href="https://codereview.chromium.org/2628293003" target="_blank" rel="noopener">adding his jlh command to V8’s gdbinit</a> and thanks to Andreas Haas for proofreading and valuable corrections.</p>
 <ul>
 <li><a href="https://medium.com/tag/programming?source=post" target="_blank" rel="noopener">Programming</a></li>
 <li><a href="https://medium.com/tag/javascript?source=post" target="_blank" rel="noopener">JavaScript</a></li>
@@ -259,7 +258,7 @@ $1 = {val_ = 0x51eb3a0}
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Or-in-other-projects-that-embed-V8"><span class="toc-number">1.</span> <span class="toc-text"><a href="#Or-in-other-projects-that-embed-V8" class="headerlink" title="Or in other projects that embed V8"></a>Or in other projects that embed V8</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -317,11 +316,8 @@ $1 = {val_ = 0x51eb3a0}
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="/js/main.js"></script>
 <!-- search -->
 

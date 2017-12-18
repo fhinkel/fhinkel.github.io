@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="This article lists a few tools, tips, and tricks for Node core contributors.They are in addition to the process laid out inContributing andthe collaboratorguide. Node contributions are managed under a">
+    <meta name="description" content="This article lists a few tools, tips, and tricks for Node core contributors.  They are in addition to the process laid out in Contributing and the collaborator guide. Node contributions are managed un">
 <meta name="keywords" content="nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tools for Node.js Contributors">
 <meta property="og:url" content="http://fhinkel.github.io/2017/03/25/Tools-for-Node-js-Contributors/index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann">
-<meta property="og:description" content="This article lists a few tools, tips, and tricks for Node core contributors.They are in addition to the process laid out inContributing andthe collaboratorguide. Node contributions are managed under a">
+<meta property="og:description" content="This article lists a few tools, tips, and tricks for Node core contributors.  They are in addition to the process laid out in Contributing and the collaborator guide. Node contributions are managed un">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*gyadFChSxRzX7GGtPROoag.png">
-<meta property="og:updated_time" content="2017-12-18T15:01:07.022Z">
+<meta property="og:updated_time" content="2017-12-18T17:33:29.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tools for Node.js Contributors">
-<meta name="twitter:description" content="This article lists a few tools, tips, and tricks for Node core contributors.They are in addition to the process laid out inContributing andthe collaboratorguide. Node contributions are managed under a">
+<meta name="twitter:description" content="This article lists a few tools, tips, and tricks for Node core contributors.  They are in addition to the process laid out in Contributing and the collaborator guide. Node contributions are managed un">
 <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*gyadFChSxRzX7GGtPROoag.png">
     
     
@@ -136,30 +136,21 @@
 
     </div>
   </header>
-  
-
   <div class="content" itemprop="articleBody">
-    <p>This article lists a few tools, tips, and tricks for Node core contributors.<br>They are in addition to the process laid out in<br><a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a> and<br>the <a href="https://github.com/nodejs/node/blob/master/COLLABORATOR_GUIDE.md" target="_blank" rel="noopener">collaborator<br>guide</a>.</p>
-<p><a href="https://github.com/nodejs/node" target="_blank" rel="noopener">Node contributions</a> are managed under an <a href="https://github.com/nodejs/node/blob/master/GOVERNANCE.md" target="_blank" rel="noopener">open<br>governance model</a>.<br>Everybody is welcome to<br><a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">contribute</a>.<br>Individuals making significant contributions aremade <em>Collaborators</em> and given<br>commit-access to the project.</p>
-<h3 id="Automatically-check-your-commit-messages"><a href="#Automatically-check-your-commit-messages" class="headerlink" title="Automatically check your commit messages"></a>Automatically check your commit messages</h3><p>Node has <a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md#commit-guidelines" target="_blank" rel="noopener">strict rules
-</a>about<br>the format of a commit message. So strict that it’s often hard to remember all<br>of them. Luckily, there’s a handy tool to help you (shoutout to <a href="https://medium.com/@evanlucas" target="_blank" rel="noopener">Evan<br>Lucas</a>👏):</p>
+    <p>This article lists a few tools, tips, and tricks for Node core contributors.  They are in addition to the process laid out in <a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a> and the <a href="https://github.com/nodejs/node/blob/master/COLLABORATOR_GUIDE.md" target="_blank" rel="noopener">collaborator guide</a>.</p>
+<p><a href="https://github.com/nodejs/node" target="_blank" rel="noopener">Node contributions</a> are managed under an <a href="https://github.com/nodejs/node/blob/master/GOVERNANCE.md" target="_blank" rel="noopener">open governance model</a>.  Everybody is welcome to <a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener">contribute</a>.  Individuals making significant contributions aremade <em>Collaborators</em> and given commit-access to the project.</p>
+<h3 id="Automatically-check-your-commit-messages"><a href="#Automatically-check-your-commit-messages" class="headerlink" title="Automatically check your commit messages"></a>Automatically check your commit messages</h3><p>Node has <a href="https://github.com/nodejs/node/blob/master/CONTRIBUTING.md#commit-guidelines" target="_blank" rel="noopener">strict rules</a> about the format of a commit message. So strict that it’s often hard to remember all of them. Luckily, there’s a handy tool to help you (shoutout to <a href="https://medium.com/@evanlucas" target="_blank" rel="noopener">Evan<br>Lucas</a>👏):</p>
 <p><img src="https://cdn-images-1.medium.com/max/1600/1*gyadFChSxRzX7GGtPROoag.png" alt=""></p>
-<p>Install it and run it on every commit that you open a PR for and for every<br>commit that you merge as a collaborator.<br><a href="https://www.npmjs.com/package/core-validate-commit" target="_blank" rel="noopener">core-validate-commit</a> is<br>invaluable for a smooth review process.</p>
-<h3 id="Filter-pull-requests"><a href="#Filter-pull-requests" class="headerlink" title="Filter pull requests"></a>Filter pull requests</h3><p>We merge <a href="https://github.com/nodejs/node/pulls" target="_blank" rel="noopener">pull requests</a> manually. We<br>currently have more than 300 open PRs. To work through them, it’s useful to<br>filter for PRs that are ready to merge, i.e., approving reviews and passing<br><a href="https://ci.nodejs.org/" target="_blank" rel="noopener">CI</a>. With the right<br><a href="https://help.github.com/articles/searching-issues/" target="_blank" rel="noopener">search</a> terms on GitHub,<br><a href="https://github.com/nodejs/node/pulls?utf8=â&amp;q=is:pr is:open
-status:success review:approved" target="_blank" rel="noopener">that’s easy</a>:</p>
+<p>Install it and run it on every commit that you open a PR for and for every commit that you merge as a collaborator.  <a href="https://www.npmjs.com/package/core-validate-commit" target="_blank" rel="noopener">core-validate-commit</a> is invaluable for a smooth review process.</p>
+<h3 id="Filter-pull-requests"><a href="#Filter-pull-requests" class="headerlink" title="Filter pull requests"></a>Filter pull requests</h3><p>We merge <a href="https://github.com/nodejs/node/pulls" target="_blank" rel="noopener">pull requests</a> manually. We currently have more than 300 open PRs. To work through them, it’s useful to filter for PRs that are ready to merge, i.e., approving reviews and passing <a href="https://ci.nodejs.org/" target="_blank" rel="noopener">CI</a>. With the right <a href="https://help.github.com/articles/searching-issues/" target="_blank" rel="noopener">search</a> terms on GitHub, <a href="https://github.com/nodejs/node/pulls?utf8=â&amp;q=is:pr is:open status:success review:approved" target="_blank" rel="noopener">that’s easy</a>:</p>
 <pre><code>is:pr is:open status:success review:approved
 </code></pre><p><span class="figcaption_hack">Filter PRs that are ready to merge.</span></p>
-<p>This results in 10 issues. Wait, only 10 out of 334? The CI is often flaky on<br>specific architectures. We fall back to manually inspecting the CI results (11<br>out of 12 checks is usually good enough). Still, we can narrow the results and<br>then happily approve, merge, and close away:</p>
+<p>This results in 10 issues. Wait, only 10 out of 334? The CI is often flaky on specific architectures. We fall back to manually inspecting the CI results (11 out of 12 checks is usually good enough). Still, we can narrow the results and then happily approve, merge, and close away:</p>
 <pre><code>is:pr is:open review:approved -label:semver-major -label:&quot;in progress&quot;
-</code></pre><h3 id="Review-metadata"><a href="#Review-metadata" class="headerlink" title="Review metadata"></a>Review metadata</h3><p>We annotate every PR with metadata, the PR Url and reviewers. Use <a href="https://github.com/evanlucas/node-review" target="_blank" rel="noopener">this chrome<br>extension</a> and let it generate the<br>metadata for you.</p>
-<h3 id="Filter-email-notifications"><a href="#Filter-email-notifications" class="headerlink" title="Filter email notifications"></a>Filter email notifications</h3><p>The Node repository has a lot of traffic, keeping up to date with all email<br>notifications is impossible. I filter for notifications that specifically<br>mention my GitHub handle and only skim the other notifications. Whatever your<br>system, you probably need some kind of filtering to be effective with GitHub<br>notifications.</p>
+</code></pre><h3 id="Review-metadata"><a href="#Review-metadata" class="headerlink" title="Review metadata"></a>Review metadata</h3><p>We annotate every PR with metadata, the PR Url and reviewers. Use <a href="https://github.com/evanlucas/node-review" target="_blank" rel="noopener">this chrome extension</a> and let it generate the metadata for you.</p>
+<h3 id="Filter-email-notifications"><a href="#Filter-email-notifications" class="headerlink" title="Filter email notifications"></a>Filter email notifications</h3><p>The Node repository has a lot of traffic, keeping up to date with all email notifications is impossible. I filter for notifications that specifically mention my GitHub handle and only skim the other notifications. Whatever your system, you probably need some kind of filtering to be effective with GitHub notifications.</p>
 <p><span class="figcaption_hack">inbox.google.com</span></p>
 <p>Happy contributing!</p>
-<ul>
-<li><a href="https://medium.com/tag/javascript?source=post" target="_blank" rel="noopener">JavaScript</a></li>
-<li><a href="https://medium.com/tag/github?source=post" target="_blank" rel="noopener">Github</a></li>
-<li><a href="https://medium.com/tag/nodejs?source=post" target="_blank" rel="noopener">Nodejs</a></li>
-</ul>
 
   </div>
 </article>
@@ -244,11 +235,8 @@ status:success review:approved" target="_blank" rel="noopener">that’s easy</a>
 <!-- styles -->
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
 <!-- jquery -->
 <script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 <script src="/js/main.js"></script>
 <!-- search -->
 
