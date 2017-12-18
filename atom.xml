@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Franziska Hinkelmann</title>
+  
+  <subtitle>Compiler Engineer at Google. Node.js Monkey Patcher.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://fhinkel.github.io/"/>
+  <updated>2017-12-18T17:32:34.656Z</updated>
+  <id>http://fhinkel.github.io/</id>
+  
+  <author>
+    <name>F. Hinkelmann</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>New in VS Code: Inline Change Review</title>
+    <link href="http://fhinkel.github.io/2017/11/26/New-in-VS-Code-Inline-Change-Review/"/>
+    <id>http://fhinkel.github.io/2017/11/26/New-in-VS-Code-Inline-Change-Review/</id>
+    <published>2017-11-25T23:00:00.000Z</published>
+    <updated>2017-12-18T17:32:34.656Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Expandable-Git-annotations-in-the-gutter-like-in-WebStorm-🎉&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://fhinkel.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Runtime Type Information for JavaScript</title>
+    <link href="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"/>
+    <id>http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/</id>
+    <published>2017-09-16T22:00:00.000Z</published>
+    <updated>2017-12-18T17:30:32.542Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Chrome-V8-can-now-collect-type-information-at-runtime&quot;&gt;&lt;a href=&quot;#Chrome-V8-can-now-collect-type-information-at-runtime&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Understanding V8&#39;s Bytecode</title>
+    <link href="http://fhinkel.github.io/2017/08/16/Understanding-V8-s-Bytecode/"/>
+    <id>http://fhinkel.github.io/2017/08/16/Understanding-V8-s-Bytecode/</id>
+    <published>2017-08-15T22:00:00.000Z</published>
+    <updated>2017-12-18T17:32:11.273Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This article explains V8’s bytecode
+        
+      
+    
+    </summary>
+    
+    
+      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+    
+      <category term="compiler" scheme="http://fhinkel.github.io/tags/compiler/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tools for Node.js Contributors</title>
+    <link href="http://fhinkel.github.io/2017/03/25/Tools-for-Node-js-Contributors/"/>
+    <id>http://fhinkel.github.io/2017/03/25/Tools-for-Node-js-Contributors/</id>
+    <published>2017-03-24T23:00:00.000Z</published>
+    <updated>2017-12-18T17:33:29.470Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;This article lists a few tools, tips, and tricks for Node core contributors.  They are in addition to the process laid out in &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="nodejs" scheme="http://fhinkel.github.io/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Debug V8 in Node.js Core with GDB</title>
+    <link href="http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"/>
+    <id>http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/</id>
+    <published>2017-01-16T23:00:00.000Z</published>
+    <updated>2017-12-18T17:24:05.864Z</updated>
+    
+    <summary type="html">
+    
+      foo bar baz
+    
+    </summary>
+    
+    
+      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+    
+      <category term="nodejs" scheme="http://fhinkel.github.io/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://fhinkel.github.io/2017/01/01/hello-world/"/>
+    <id>http://fhinkel.github.io/2017/01/01/hello-world/</id>
+    <published>2016-12-31T23:00:00.000Z</published>
+    <updated>2017-12-18T16:51:54.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Hello, this blog is written with &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt; and the cactus dark theme. This is
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
