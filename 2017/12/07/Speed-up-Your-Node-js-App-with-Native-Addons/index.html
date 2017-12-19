@@ -15,7 +15,7 @@
 <meta property="og:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-19T13:15:05.283Z">
+<meta property="og:updated_time" content="2017-12-19T13:20:39.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Speed up Your Node.js App with Native Addons">
 <meta name="twitter:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
@@ -144,10 +144,10 @@
 <blockquote>
 <p>If your Node app’s sole purpose is to compute prime numbers and you don’t want to use a fast lookup table, please rely on this benchmark 100%. For anything else, this benchmark is probably useless.</p>
 </blockquote>
-<p><img src="WithOpt.png" alt="Computing one million prime numbers without warm up.">Computing one million prime numbers without warm up.</p>
+<img src="/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/WithOpt.png" title="Computing one million prime numbers without warm up.">
 <p>Except for the smallest computations, C++ is faster than JavaScript by a factor 1.5, e.g., C++ takes 10 seconds where JavaScript takes 15 seconds. If you have a similar workload (computation heavy, few jumps between C++ and JavaScript), you might want to consider writing a native addon.</p>
 <p>V8’s optimizing compiler TurboFan uses information collected at runtime to speed up future computations. We can see in the chart above that TurboFan has finished compiling when we get to the 90th prime number, speeding up JavaScript substantially.</p>
-<p><img src="WithOpt50.png" alt="Computing the first 50 prime numbers with warm up.">Computing the first 50 prime numbers with warm up.</p>
+<img src="/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/WithOpt50.png" title="Computing the first 50 prime numbers with warm up.">
 <p>If we “warm up” TurboFan and then start computing prime numbers, JavaScript is faster on the first 25 prime numbers, because calling into C++ comes with a small performance overhead. For larger prime numbers, the C++ addon is faster.</p>
 <blockquote>
 <p>If we use <code>long</code> instead of <code>int</code> as the parameter for C++’s <code>prime()</code> function, it slows down the modulo operator so badly that JavaScript ends up being faster than C++ <em>🤷🏻‍</em>. <strong>Always measure performance, don’t blindly make **</strong>changes<strong>** because somebody said “C++ is faster than JavaScript.”</strong></p>
@@ -163,12 +163,7 @@
 <p>Except for small prime numbers, C++ is faster than JavaScript. If you have a similar workload (computation heavy, few jumps between C++ and JavaScript) and its performance is critical, you might want to consider writing a native addon.</p>
 </blockquote>
 <h3 id="Running-JavaScript-without-Optimizations"><a href="#Running-JavaScript-without-Optimizations" class="headerlink" title="Running JavaScript without Optimizations"></a>Running JavaScript without Optimizations</h3><p>JavaScript is almost as fast as C++ for tasks like this prime number calculation. Such performance is possible with <a href="https://youtu.be/p-iiEDtpy6I" target="_blank" rel="noopener">modern JavaScript engines because they use adaptive optimizations</a>. Without optimizations, the performance difference is much bigger.</p>
-<p><img src="WithoutOpt.png" alt="Computing prime numbers without adaptive optimizations.">Computing prime numbers without adaptive optimizations.</p>
-<p>In the prime number example, JavaScript without optimizations is 10 times slower than C++, not only 0.5 times. You can turn off optimizations with V8’s <code>--no-opt</code> flag, e.g.., by running <code>node --no-opt index.js</code>.</p>
-<p><strong>The full prime number example is hosted on </strong><a href="https://github.com/fhinkel/javascript-vs-native-addon-prime-numbers" target="_blank" rel="noopener">GitHub</a><strong>.  Fork it and experiment with it. Remember to run </strong><code>npm install</code><strong> to recompile the addon if you change any C++ code.</strong></p>
-<p><em>All computations were run on a MacBook Air with Node 9.2.</em></p>
-<p>Thanks to Andreas Haas, Anna Henningsen, and Michael Dawson for careful reviews.</p>
-
+<p></p>
   </div>
 </article>
 
