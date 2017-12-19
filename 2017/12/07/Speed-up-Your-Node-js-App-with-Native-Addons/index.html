@@ -15,7 +15,7 @@
 <meta property="og:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-19T12:52:48.315Z">
+<meta property="og:updated_time" content="2017-12-19T13:15:05.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Speed up Your Node.js App with Native Addons">
 <meta name="twitter:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
@@ -152,13 +152,11 @@
 <blockquote>
 <p>If we use <code>long</code> instead of <code>int</code> as the parameter for C++’s <code>prime()</code> function, it slows down the modulo operator so badly that JavaScript ends up being faster than C++ <em>🤷🏻‍</em>. <strong>Always measure performance, don’t blindly make **</strong>changes<strong>** because somebody said “C++ is faster than JavaScript.”</strong></p>
 </blockquote>
-<script src="https://gist.github.com/fhinkel/819c7292c4f503a5426077aaf0400157.js"></script>
-
-<p><span class="figcaption_hack">Index.js that runs prime number computations in JavaScript and C++ side by side.</span></p>
+<p><script src="//gist.github.com/819c7292c4f503a5426077aaf0400157.js"></script><span class="figcaption_hack">Index.js that runs prime number computations in JavaScript and C++ side by side.</span></p>
 <p>We could easily improve the algorithm. But since we’re not interested in absolute performance, it doesn’t matter as long as both implementations use the same algorithm.</p>
-<p><script src="https://gist.github.com/fhinkel/2876ea53ab539c8d7c8e7026d5cdec72.js"></script><span class="figcaption_hack">N-th prime implementation in JavaScript.</span></p>
+<p><script src="//gist.github.com/2876ea53ab539c8d7c8e7026d5cdec72.js"></script><span class="figcaption_hack">N-th prime implementation in JavaScript.</span></p>
 <p>The implementation of the algorithm in <code>primes.cc</code> is exactly the same as in <code>primes.js</code> modulo syntax. What’s different in the addon is how the function <code>prime()</code> is exported:</p>
-<p><script src="https://gist.github.com/fhinkel/3596428e607e927b922615ba74152037.js"></script><span class="figcaption_hack">Initializing the native module with N-API.</span></p>
+<p><script src="//gist.github.com/3596428e607e927b922615ba74152037.js"></script><span class="figcaption_hack">Initializing the native module with N-API.</span></p>
 <p>This example uses the <a href="https://nodejs.org/api/n-api.html" target="_blank" rel="noopener">N-API</a> for the <a href="https://nodejs.org/api/addons.html" target="_blank" rel="noopener">Node.js Native Addon</a>. <strong>The N-API is a C API that ensures stability of the Application Binary Interface (ABI) across versions of Node.js.</strong> That means, compiled once, the module can be used for different versions of Node (8 and higher) without re-compilation. As C++ is often more convenient than C, we use a C++ wrapper package, <a href="https://www.npmjs.com/package/node-addon-api" target="_blank" rel="noopener">node-addon-api</a>. For more info on getting started with N-API check out the <a href="https://nodejs.org/dist/latest/docs/api/n-api.html" target="_blank" rel="noopener">documentation</a> or <a href="https://github.com/nodejs/abi-stable-node" target="_blank" rel="noopener">GitHub repository</a>.</p>
 <p><code>Method</code> converts the first argument to a number, calls the C++ function <code>prime</code> with that number, and returns the result as a JavaScript value. The <code>Init</code> function sets <code>Method</code> as property <code>prime</code> on the exported module.</p>
 <blockquote>
