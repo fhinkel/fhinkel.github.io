@@ -5,9 +5,9 @@
   <subtitle>Compiler Engineer at Google. Node.js Monkey Patcher.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://fhinkel.github.io/"/>
+  <link href="http://fhinkel.rocks/"/>
   <updated>2017-12-18T22:28:31.295Z</updated>
-  <id>http://fhinkel.github.io/</id>
+  <id>http://fhinkel.rocks/</id>
   
   <author>
     <name>Franziska Hinkelmann</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Speed up Your Node.js App with Native Addons</title>
-    <link href="http://fhinkel.github.io/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"/>
-    <id>http://fhinkel.github.io/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/</id>
+    <link href="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"/>
+    <id>http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/</id>
     <published>2017-12-06T23:00:00.000Z</published>
     <updated>2017-12-18T22:28:31.295Z</updated>
     
@@ -36,16 +36,16 @@
     </summary>
     
     
-      <category term="nodejs" scheme="http://fhinkel.github.io/tags/nodejs/"/>
+      <category term="nodejs" scheme="http://fhinkel.rocks/tags/nodejs/"/>
     
-      <category term="performance" scheme="http://fhinkel.github.io/tags/performance/"/>
+      <category term="performance" scheme="http://fhinkel.rocks/tags/performance/"/>
     
   </entry>
   
   <entry>
     <title>New in VS Code: Inline Change Review</title>
-    <link href="http://fhinkel.github.io/2017/11/26/New-in-VS-Code-Inline-Change-Review/"/>
-    <id>http://fhinkel.github.io/2017/11/26/New-in-VS-Code-Inline-Change-Review/</id>
+    <link href="http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/"/>
+    <id>http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/</id>
     <published>2017-11-25T23:00:00.000Z</published>
     <updated>2017-12-18T17:32:34.656Z</updated>
     
@@ -62,14 +62,14 @@
     </summary>
     
     
-      <category term="git" scheme="http://fhinkel.github.io/tags/git/"/>
+      <category term="git" scheme="http://fhinkel.rocks/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>Runtime Type Information for JavaScript</title>
-    <link href="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"/>
-    <id>http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/</id>
+    <link href="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"/>
+    <id>http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/</id>
     <published>2017-09-16T22:00:00.000Z</published>
     <updated>2017-12-18T17:30:32.542Z</updated>
     
@@ -86,14 +86,14 @@
     </summary>
     
     
-      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+      <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
     
   </entry>
   
   <entry>
     <title>Understanding V8&#39;s Bytecode</title>
-    <link href="http://fhinkel.github.io/2017/08/16/Understanding-V8-s-Bytecode/"/>
-    <id>http://fhinkel.github.io/2017/08/16/Understanding-V8-s-Bytecode/</id>
+    <link href="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/"/>
+    <id>http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/</id>
     <published>2017-08-15T22:00:00.000Z</published>
     <updated>2017-12-18T17:32:11.273Z</updated>
     
@@ -110,16 +110,16 @@
     </summary>
     
     
-      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+      <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
     
-      <category term="compiler" scheme="http://fhinkel.github.io/tags/compiler/"/>
+      <category term="compiler" scheme="http://fhinkel.rocks/tags/compiler/"/>
     
   </entry>
   
   <entry>
     <title>Tools for Node.js Contributors</title>
-    <link href="http://fhinkel.github.io/2017/03/25/Tools-for-Node-js-Contributors/"/>
-    <id>http://fhinkel.github.io/2017/03/25/Tools-for-Node-js-Contributors/</id>
+    <link href="http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/"/>
+    <id>http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/</id>
     <published>2017-03-24T23:00:00.000Z</published>
     <updated>2017-12-18T17:33:29.470Z</updated>
     
@@ -136,14 +136,14 @@
     </summary>
     
     
-      <category term="nodejs" scheme="http://fhinkel.github.io/tags/nodejs/"/>
+      <category term="nodejs" scheme="http://fhinkel.rocks/tags/nodejs/"/>
     
   </entry>
   
   <entry>
     <title>Debug V8 in Node.js Core with GDB</title>
-    <link href="http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"/>
-    <id>http://fhinkel.github.io/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/</id>
+    <link href="http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"/>
+    <id>http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/</id>
     <published>2017-01-16T23:00:00.000Z</published>
     <updated>2017-12-18T20:55:17.450Z</updated>
     
@@ -160,16 +160,16 @@
     </summary>
     
     
-      <category term="V8" scheme="http://fhinkel.github.io/tags/V8/"/>
+      <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
     
-      <category term="nodejs" scheme="http://fhinkel.github.io/tags/nodejs/"/>
+      <category term="nodejs" scheme="http://fhinkel.rocks/tags/nodejs/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://fhinkel.github.io/2017/01/01/hello-world/"/>
-    <id>http://fhinkel.github.io/2017/01/01/hello-world/</id>
+    <link href="http://fhinkel.rocks/2017/01/01/hello-world/"/>
+    <id>http://fhinkel.rocks/2017/01/01/hello-world/</id>
     <published>2016-12-31T23:00:00.000Z</published>
     <updated>2017-12-18T20:53:51.232Z</updated>
     

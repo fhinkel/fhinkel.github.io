@@ -10,16 +10,16 @@
 <meta name="keywords" content="V8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runtime Type Information for JavaScript">
-<meta property="og:url" content="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/index.html">
+<meta property="og:url" content="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann">
 <meta property="og:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta property="og:locale" content="english">
-<meta property="og:image" content="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
+<meta property="og:image" content="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
 <meta property="og:updated_time" content="2017-12-18T17:30:32.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime Type Information for JavaScript">
 <meta name="twitter:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
-<meta name="twitter:image" content="http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
+<meta name="twitter:image" content="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
 <meta name="twitter:creator" content="@fhinkel">
     
     
@@ -90,16 +90,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&text=Runtime Type Information for JavaScript"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&is_video=false&description=Runtime Type Information for JavaScript"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Runtime Type Information for JavaScript&body=Check out this article: http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&name=Runtime Type Information for JavaScript&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&text=Runtime Type Information for JavaScript"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&is_video=false&description=Runtime Type Information for JavaScript"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Runtime Type Information for JavaScript&body=Check out this article: http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&name=Runtime Type Information for JavaScript&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -197,16 +197,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&text=Runtime Type Information for JavaScript"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&is_video=false&description=Runtime Type Information for JavaScript"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Runtime Type Information for JavaScript&body=Check out this article: http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.github.io/2017/09/17/Runtime-type-information-for-JavaScript/&name=Runtime Type Information for JavaScript&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&text=Runtime Type Information for JavaScript"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&is_video=false&description=Runtime Type Information for JavaScript"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Runtime Type Information for JavaScript&body=Check out this article: http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&title=Runtime Type Information for JavaScript"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/&name=Runtime Type Information for JavaScript&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
