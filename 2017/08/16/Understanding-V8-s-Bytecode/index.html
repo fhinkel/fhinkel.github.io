@@ -14,12 +14,12 @@
 <meta property="og:site_name" content="Franziska Hinkelmann">
 <meta property="og:description" content="V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This article explains V8’s bytecode format — which is actually easy to read once you understand some">
 <meta property="og:locale" content="english">
-<meta property="og:image" content="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-19T14:30:46.743Z">
+<meta property="og:image" content="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/images/hinkelmannSmall.jpeg">
+<meta property="og:updated_time" content="2017-12-19T16:27:56.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding V8&#39;s Bytecode">
 <meta name="twitter:description" content="V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This article explains V8’s bytecode format — which is actually easy to read once you understand some">
-<meta name="twitter:image" content="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/images/hinkelmann.jpeg">
+<meta name="twitter:image" content="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/images/hinkelmannSmall.jpeg">
 <meta name="twitter:creator" content="@fhinkel">
     
     
@@ -158,8 +158,7 @@
 }
 
 incrementX({x: 42});  // V8’s compiler is lazy, if you don’t run a function, it won’t interpret it.
-</code></pre><blockquote>
-<p>If you want to see<strong> V8’s bytecode of JavaScript code</strong>, you can print it by calling <a href="https://github.com/v8/v8/wiki/Using-D8" target="_blank" rel="noopener">D8</a> or Node.js (8.3 or higher) with the flag<code>--print-bytecode</code>. For Chrome, start Chrome from the command line with <code>--js-flags=&quot;--print-bytecode&quot;</code>, see <a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags" target="_blank" rel="noopener">Run Chromium with flags</a>.</p>
+</code></pre><blockquote><p>If you want to see<strong> V8’s bytecode of JavaScript code</strong>, you can print it by calling <a href="https://github.com/v8/v8/wiki/Using-D8" target="_blank" rel="noopener">D8</a> or Node.js (8.3 or higher) with the flag <code>--print-bytecode</code>. For Chrome, start Chrome from the command line with <code>--js-flags=&quot;--print-bytecode&quot;</code>, see <a href="https://www.chromium.org/developers/how-tos/run-chromium-with-flags" target="_blank" rel="noopener">Run Chromium with flags</a>.</p>
 </blockquote>
 <pre><code>...
 [generating bytecode for function: incrementX]
