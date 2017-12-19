@@ -15,7 +15,7 @@
 <meta property="og:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-19T13:36:56.243Z">
+<meta property="og:updated_time" content="2017-12-19T13:38:38.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime Type Information for JavaScript">
 <meta name="twitter:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
@@ -143,7 +143,7 @@
   <div class="content" itemprop="articleBody">
     <h1 id="Chrome-V8-can-now-collect-type-information-at-runtime"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</h1><p>Get types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many otherapplications use V8. This type profiler is built into the engine, the information is not statically inferred.</p>
 <p>JavaScript is a dynamically typed language. But most code is written with fixed types in mind. When debugging JavaScript, itis helpful to know the types of variables and parameters at runtime. It is often hard to infer types for complex code. Type profiling provides this information at runtime.</p>
-
+<img src="/2017/09/17/Runtime-type-information-for-JavaScript/img1.png" title="https://github.com/fhinkel/type-profile">
 <pre><code>function foo(x) {
     if (x &lt; 2) {
       return 42;
