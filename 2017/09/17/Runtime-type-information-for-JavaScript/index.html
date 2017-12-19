@@ -15,7 +15,7 @@
 <meta property="og:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-18T17:30:32.542Z">
+<meta property="og:updated_time" content="2017-12-19T13:36:56.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime Type Information for JavaScript">
 <meta name="twitter:description" content="Chrome V8 can now collect type information at runtimeGet types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engin">
@@ -143,7 +143,7 @@
   <div class="content" itemprop="articleBody">
     <h1 id="Chrome-V8-can-now-collect-type-information-at-runtime"><a href="#Chrome-V8-can-now-collect-type-information-at-runtime" class="headerlink" title="Chrome V8 can now collect type information at runtime"></a>Chrome V8 can now collect type information at runtime</h1><p>Get types like string, number, null, or custom classes at runtime. V8 can now collect type information. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many otherapplications use V8. This type profiler is built into the engine, the information is not statically inferred.</p>
 <p>JavaScript is a dynamically typed language. But most code is written with fixed types in mind. When debugging JavaScript, itis helpful to know the types of variables and parameters at runtime. It is often hard to infer types for complex code. Type profiling provides this information at runtime.</p>
-<p><img src="https://cdn-images-1.medium.com/max/2000/1*CLdktAPyagGXXZQYUS5UtA.png" alt=""> <span class="figcaption_hack"><a href="https://github.com/fhinkel/type-profile" target="_blank" rel="noopener">https://github.com/fhinkel/type-profile</a></span></p>
+
 <pre><code>function foo(x) {
     if (x &lt; 2) {
       return 42;
@@ -157,9 +157,9 @@
 <p>I look forward to all the tools the community will come up with that use type profile.</p>
 </blockquote>
 <p>I look forward to all the tools the community will come up with that use type profile. I’m sure there are many use cases that I haven’t even considered yet.  If you are already working on a prototype, please share!</p>
-<p><span class="figcaption_hack">foo() has only been called with Objects, it always returned strings.</span></p>
-<p><span class="figcaption_hack">foo() has been called with strings and Rectangles. It always returns strings.</span></p>
-<p><span class="figcaption_hack">foo() has returned strings and numbers.</span></p>
+<img src="/2017/09/17/Runtime-type-information-for-JavaScript/onlyObjects.png" title="foo() has only been called with Objects, it always returned strings.">
+<img src="/2017/09/17/Runtime-type-information-for-JavaScript/returnStrings.png" title="foo() has been called with strings and Rectangles. It always returns strings.">
+<img src="/2017/09/17/Runtime-type-information-for-JavaScript/stringsAndNumbers.png" title="foo() has returned strings and numbers.">
 
   </div>
 </article>
