@@ -15,7 +15,7 @@
 <meta property="og:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/images/hinkelmann.jpeg">
-<meta property="og:updated_time" content="2017-12-19T13:20:39.311Z">
+<meta property="og:updated_time" content="2017-12-19T13:21:34.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Speed up Your Node.js App with Native Addons">
 <meta name="twitter:description" content="What’s faster, C++ or JavaScript?JavaScript is a ridiculously fast scripting language. But how fast is JavaScript compared to C++? Let’s look at this example that computes prime numbers in Node with J">
@@ -150,7 +150,7 @@
 <img src="/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/WithOpt50.png" title="Computing the first 50 prime numbers with warm up.">
 <p>If we “warm up” TurboFan and then start computing prime numbers, JavaScript is faster on the first 25 prime numbers, because calling into C++ comes with a small performance overhead. For larger prime numbers, the C++ addon is faster.</p>
 <blockquote>
-<p>If we use <code>long</code> instead of <code>int</code> as the parameter for C++’s <code>prime()</code> function, it slows down the modulo operator so badly that JavaScript ends up being faster than C++ <em>🤷🏻‍</em>. <strong>Always measure performance, don’t blindly make **</strong>changes<strong>** because somebody said “C++ is faster than JavaScript.”</strong></p>
+<p>If we use <code>long</code> instead of <code>int</code> as the parameter for C++’s <code>prime()</code> function, it slows down the modulo operator so badly that JavaScript ends up being faster than C++ 🤷🏻‍. <strong>Always measure performance, don’t blindly make changes because somebody said “C++ is faster than JavaScript.”</strong></p>
 </blockquote>
 <p><script src="//gist.github.com/819c7292c4f503a5426077aaf0400157.js"></script><span class="figcaption_hack">Index.js that runs prime number computations in JavaScript and C++ side by side.</span></p>
 <p>We could easily improve the algorithm. But since we’re not interested in absolute performance, it doesn’t matter as long as both implementations use the same algorithm.</p>
