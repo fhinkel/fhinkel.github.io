@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2017-12-19T13:29:15.270Z</updated>
+  <updated>2017-12-24T10:27:58.000Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"/>
     <id>http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/</id>
     <published>2017-12-06T23:00:00.000Z</published>
-    <updated>2017-12-19T13:29:15.270Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -47,7 +47,7 @@
     <link href="http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/"/>
     <id>http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/</id>
     <published>2017-11-25T23:00:00.000Z</published>
-    <updated>2017-12-19T13:42:32.208Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -67,11 +67,35 @@
   </entry>
   
   <entry>
+    <title>Confused about Stack and Heap?</title>
+    <link href="http://fhinkel.rocks/2017/10/30/Confused-about-Stack-and-Heap/"/>
+    <id>http://fhinkel.rocks/2017/10/30/Confused-about-Stack-and-Heap/</id>
+    <published>2017-10-29T23:00:00.000Z</published>
+    <updated>2017-12-24T10:55:44.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Confession, I’ve always had a hard time keeping stack and heap apart. Yes, I’ve read about memorymanagement and then memorized that
+        
+      
+    
+    </summary>
+    
+    
+      <category term="algorithms" scheme="http://fhinkel.rocks/tags/algorithms/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Runtime Type Information for JavaScript</title>
     <link href="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"/>
     <id>http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/</id>
     <published>2017-09-16T22:00:00.000Z</published>
-    <updated>2017-12-19T13:38:38.017Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -95,7 +119,7 @@
     <link href="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/"/>
     <id>http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/</id>
     <published>2017-08-15T22:00:00.000Z</published>
-    <updated>2017-12-19T16:27:56.355Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -121,7 +145,7 @@
     <link href="http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/"/>
     <id>http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/</id>
     <published>2017-03-24T23:00:00.000Z</published>
-    <updated>2017-12-18T17:33:29.470Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -145,7 +169,7 @@
     <link href="http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"/>
     <id>http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/</id>
     <published>2017-01-16T23:00:00.000Z</published>
-    <updated>2017-12-18T20:55:17.450Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     
@@ -171,7 +195,7 @@
     <link href="http://fhinkel.rocks/2017/01/01/hello-world/"/>
     <id>http://fhinkel.rocks/2017/01/01/hello-world/</id>
     <published>2016-12-31T23:00:00.000Z</published>
-    <updated>2017-12-18T20:53:51.232Z</updated>
+    <updated>2017-12-24T10:27:58.000Z</updated>
     
     <summary type="html">
     

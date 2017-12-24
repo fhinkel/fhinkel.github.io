@@ -15,7 +15,7 @@
 <meta property="og:description" content="V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This article explains V8’s bytecode format — which is actually easy to read once you understand some">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/images/hinkelmannSmall.jpeg">
-<meta property="og:updated_time" content="2017-12-19T16:27:56.355Z">
+<meta property="og:updated_time" content="2017-12-24T10:27:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding V8&#39;s Bytecode">
 <meta name="twitter:description" content="V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications use V8. This article explains V8’s bytecode format — which is actually easy to read once you understand some">
@@ -104,7 +104,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaSmi-1"><span class="toc-number">1.</span> <span class="toc-text"><a href="#LdaSmi-1" class="headerlink" title="LdaSmi [1]"></a>LdaSmi [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Star-r0"><span class="toc-number">2.</span> <span class="toc-text"><a href="#Star-r0" class="headerlink" title="Star r0"></a>Star r0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaNamedProperty-a0-0-4"><span class="toc-number">3.</span> <span class="toc-text"><a href="#LdaNamedProperty-a0-0-4" class="headerlink" title="LdaNamedProperty a0, [0], [4]"></a><code>LdaNamedProperty a0, [0], [4]</code></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-r0-6"><span class="toc-number">4.</span> <span class="toc-text"><a href="#Add-r0-6" class="headerlink" title="Add r0, [6]"></a>Add r0, [6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Return"><span class="toc-number">5.</span> <span class="toc-text"><a href="#Return" class="headerlink" title="Return"></a>Return</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaSmi-1"><span class="toc-number">1.</span> <span class="toc-text">LdaSmi [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Star-r0"><span class="toc-number">2.</span> <span class="toc-text">Star r0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaNamedProperty-a0-0-4"><span class="toc-number">3.</span> <span class="toc-text">LdaNamedProperty a0, [0], [4]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-r0-6"><span class="toc-number">4.</span> <span class="toc-text">Add r0, [6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Return"><span class="toc-number">5.</span> <span class="toc-text">Return</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -227,7 +227,7 @@ Handler Table (size = 16)
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaSmi-1"><span class="toc-number">1.</span> <span class="toc-text"><a href="#LdaSmi-1" class="headerlink" title="LdaSmi [1]"></a>LdaSmi [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Star-r0"><span class="toc-number">2.</span> <span class="toc-text"><a href="#Star-r0" class="headerlink" title="Star r0"></a>Star r0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaNamedProperty-a0-0-4"><span class="toc-number">3.</span> <span class="toc-text"><a href="#LdaNamedProperty-a0-0-4" class="headerlink" title="LdaNamedProperty a0, [0], [4]"></a><code>LdaNamedProperty a0, [0], [4]</code></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-r0-6"><span class="toc-number">4.</span> <span class="toc-text"><a href="#Add-r0-6" class="headerlink" title="Add r0, [6]"></a>Add r0, [6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Return"><span class="toc-number">5.</span> <span class="toc-text"><a href="#Return" class="headerlink" title="Return"></a>Return</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaSmi-1"><span class="toc-number">1.</span> <span class="toc-text">LdaSmi [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Star-r0"><span class="toc-number">2.</span> <span class="toc-text">Star r0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LdaNamedProperty-a0-0-4"><span class="toc-number">3.</span> <span class="toc-text">LdaNamedProperty a0, [0], [4]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-r0-6"><span class="toc-number">4.</span> <span class="toc-text">Add r0, [6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Return"><span class="toc-number">5.</span> <span class="toc-text">Return</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -297,7 +297,7 @@ Handler Table (size = 16)
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-111379301-1', 'auto');
+        ga('create', 'UA-111379301-2', 'auto');
         ga('send', 'pageview');
     </script>
 
