@@ -141,6 +141,30 @@
   </entry>
   
   <entry>
+    <title>How do I get Started with V8 Development?</title>
+    <link href="http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/"/>
+    <id>http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/</id>
+    <published>2017-07-29T22:00:00.000Z</published>
+    <updated>2017-12-24T11:40:16.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Are you interested in understanding more about compilers, virtual machines, JavaScript engines, and maybe even want to contribute to
+        
+      
+    
+    </summary>
+    
+    
+      <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tools for Node.js Contributors</title>
     <link href="http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/"/>
     <id>http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/</id>
