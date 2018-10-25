@@ -15,7 +15,7 @@
 <meta property="og:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/images/hinkelmannSmall.jpeg">
-<meta property="og:updated_time" content="2018-10-25T10:24:23.598Z">
+<meta property="og:updated_time" content="2018-10-25T10:42:43.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="V8 Internals: How Small is a “Small Integer?”">
 <meta name="twitter:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
@@ -161,9 +161,13 @@
 <p>That is easy, <code>kSmiMaxValue = -(-2^31+1) = 2^31-1</code>. The range for <code>Smis</code> in V8 on 64-bit platforms is [-2³¹, 2³¹-1].</p>
 <h2 id="32-Bit-Platforms"><a href="#32-Bit-Platforms" class="headerlink" title="32-Bit Platforms"></a>32-Bit Platforms</h2><p>On 32-bit platforms, <code>kSmiValueSize = 31</code>. So we shift by 30, and end up with <code>kMinValue = -2^30</code>. Note, 2³⁰≈ 10⁹.</p>
 <p>Why is the range for <code>Smis</code> one bit smaller on 32-bit platforms? <a href="https://github.com/v8/v8/blob/a9e3d9c7ec1345085c861af76e508d9591634530/include/v8.h#L177" target="_blank" rel="noopener">Internally</a>, V8 tags all JavaScript values as either <code>Smis</code> or heap objects using the least significant bit. If it is <code>1</code>, it is a pointer. If the least significant bit is a <code>0</code>, it is a <code>Smi</code>. That means that 32-bit integers can use only 31 bits for the <code>Smi</code> value, because one bit is used as the tag.</p>
-<p><strong>V8 tags all values as either Smis or heap pointers using the least significant bit.</strong></p>
+<blockquote>
+<p>V8 tags all values as either Smis or heap pointers using the least significant bit.</p>
+</blockquote>
 <p><code>Smis</code> are not as small as you might have thought, but they easily fit into a 32-bit or 64-bit integer together with their encoding bit.</p>
-<p><em>Bonus question: Given a non-empty array of integers, every element appears twice except for one. Find that single one. Can you use binary representation for a linear time, constant space solution?</em></p>
+<blockquote>
+<p>Bonus question: Given a non-empty array of integers, every element appears twice except for one. Find that single one. Can you use binary representation for a linear time, constant space solution?</p>
+</blockquote>
 <p>I like to use a <a href="http://geni.us/xEAH5B" target="_blank" rel="noopener">dotted Leuchturm1917</a> and <a href="http://geni.us/VCuvX" target="_blank" rel="noopener">Pigma Microns</a> for my notes.</p>
 
   </div>
