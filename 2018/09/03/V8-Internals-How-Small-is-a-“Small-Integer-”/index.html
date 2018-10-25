@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
+<meta name="keywords" content="algorithms,V8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V8 Internals: How Small is a “Small Integer?”">
+<meta property="og:url" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/index.html">
+<meta property="og:site_name" content="Franziska Hinkelmann, Ph.D">
+<meta property="og:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
+<meta property="og:locale" content="english">
+<meta property="og:image" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/images/hinkelmannSmall.jpeg">
+<meta property="og:updated_time" content="2018-10-25T10:24:23.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="V8 Internals: How Small is a “Small Integer?”">
+<meta name="twitter:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
+<meta name="twitter:image" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/images/hinkelmannSmall.jpeg">
+<meta name="twitter:creator" content="@fhinkel">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>V8 Internals: How Small is a “Small Integer?”</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Franziska Hinkelmann, Ph.D" type="application/atom+xml" />
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/speaking/">Public speaking</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/10/25/Understanding-npm-link/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&text=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&name=V8 Internals: How Small is a “Small Integer?”&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#When-binary-is-useful-outside-of-a-coding-interview"><span class="toc-number">1.</span> <span class="toc-text">When binary is useful outside of a coding interview</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Left-Shift"><span class="toc-number"></span> <span class="toc-text">Left Shift</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Cast-to-an-Unsigned-Integer"><span class="toc-number"></span> <span class="toc-text">Static Cast to an Unsigned Integer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting-it-All-Together"><span class="toc-number"></span> <span class="toc-text">Putting it All Together</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-Bit-Platforms"><span class="toc-number"></span> <span class="toc-text">32-Bit Platforms</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        V8 Internals: How Small is a “Small Integer?”
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Franziska Hinkelmann, Ph.D</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-09-03T10:08:48.000Z" itemprop="datePublished">2018-09-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/V8/">V8</a>, <a class="tag-link" href="/tags/algorithms/">algorithms</a>
+    </div>
+
+
+    </div>
+  </header>
+  <div class="content" itemprop="articleBody">
+    <h4 id="When-binary-is-useful-outside-of-a-coding-interview"><a href="#When-binary-is-useful-outside-of-a-coding-interview" class="headerlink" title="When binary is useful outside of a coding interview"></a>When binary is useful outside of a coding interview</h4><p>This article is <a href="https://medium.com/@justjavac/v8-internals-how-small-is-a-small-integer-ba5e17a3ae5f" target="_blank" rel="noopener">available in Chinese</a>.</p>
+<p><a href="https://github.com/v8/v8/wiki" target="_blank" rel="noopener">V8</a> is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you have heard any <a href="https://www.youtube.com/watch?time_continue=1616&amp;v=PM38nnInUOI" target="_blank" rel="noopener">talks</a> about V8 or read any <a href="https://medium.com/@fhinkel/understanding-v8s-bytecode-317d46c94775" target="_blank" rel="noopener">blogposts</a>, you have surely heard about <strong><code>Smis</code>, small integers</strong>. This article digs into V8’s source code to discover how large <code>Smis</code> actually are.</p>
+<p>JavaScript, by specification, does not know about integers (with the exception of recently introduced <a href="https://developers.google.com/web/updates/2018/05/bigint" target="_blank" rel="noopener">BigInts</a>). It only knows IEEE doubles. But many operations are based on integers, just think of <code>for</code> loops. All JavaScript engines have a special representation for integers. V8 has so called <code>Smis</code>, small integers.</p>
+<p>The range for <code>Smis</code> on 64-bit platforms is -2³¹ to 2³¹-1 (2³¹≈ 2*10⁹). That might not be immediately obvious when you look at V8’s source code. <code>kSmiMinValue</code> and <code>kSmiMaxValue</code> are defined in <a href="https://github.com/v8/v8/blob/a9e3d9c7ec1345085c861af76e508d9591634530/include/v8.h#L253" target="_blank" rel="noopener">include/v8.h</a> as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> kSmiMinValue = </span><br><span class="line">  (<span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;(<span class="number">-1</span>)) &lt;&lt; (kSmiValueSize — <span class="number">1</span>);</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> kSmiMaxValue = -(kSmiMinValue + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>How is that equal to -2³¹ and 2³¹-1? Let’s dissect the <code>C++</code> code into smaller chunks.</p>
+<h2 id="Left-Shift"><a href="#Left-Shift" class="headerlink" title="Left Shift"></a>Left Shift</h2><p><code>&lt;&lt;</code> is a bitwise left shift. Left shift means that we shift the binary representation of a number to the left by filling up the right side with zeros. For example, <code>5 &lt;&lt; 3 = 40</code>.</p>
+<img src="/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/img1.jpeg">
+<p>You might notice that left shift for positive numbers is the same as multiplication by 2.</p>
+<h2 id="Static-Cast-to-an-Unsigned-Integer"><a href="#Static-Cast-to-an-Unsigned-Integer" class="headerlink" title="Static Cast to an Unsigned Integer"></a>Static Cast to an Unsigned Integer</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;(<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<p>What happens when we cast a negative value to an unsigned integer, i.e., a positive number? The bits stay the same but the value is interpreted differently. Casting to an unsigned integer allows us to use left shift because it is only defined for positive numbers in <code>C++</code>.</p>
+<p>What is the binary representation of <code>-1</code>? In <a href="https://en.wikipedia.org/wiki/Two%27s_complement" target="_blank" rel="noopener">Two’s complement</a>, -1 is represented as <code>(111...111)_2</code> because 2⁶³-2⁶²-2⁶¹- … -2²-2¹–1 = 1.</p>
+<img src="/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/img2.jpeg">
+<h2 id="Putting-it-All-Together"><a href="#Putting-it-All-Together" class="headerlink" title="Putting it All Together"></a>Putting it All Together</h2><p>If you follow the <a href="https://github.com/v8/v8/blob/a9e3d9c7ec1345085c861af76e508d9591634530/include/v8.h#L225" target="_blank" rel="noopener">definitions</a> in V8’s source code, you will find that <code>kSmiValueSize</code> is defined as 32 on 64-bit machines, resulting in:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kSmiMinValue =(<span class="keyword">static_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;(<span class="number">-1</span>)) &lt;&lt; (kSmiValueSize — <span class="number">1</span>)</span><br><span class="line">             = (<span class="number">111.</span>.<span class="number">.111</span>)_2 &lt;&lt; (<span class="number">32</span><span class="number">-1</span>) </span><br><span class="line">             = (<span class="number">111.</span>.<span class="number">.111</span>)_2 &lt;&lt; <span class="number">31</span></span><br><span class="line">             = (<span class="number">11.</span>.<span class="number">.1100</span>..<span class="number">.00</span>)_2  <span class="comment">// 31 zeros</span></span><br><span class="line">             = <span class="number">-2</span>^<span class="number">31</span></span><br></pre></td></tr></table></figure>
+<p>Now we use this result in the initial definition of <code>kMaxValue</code>.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> kSmiMaxValue = -(kSmiMinValue + <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>That is easy, <code>kSmiMaxValue = -(-2^31+1) = 2^31-1</code>. The range for <code>Smis</code> in V8 on 64-bit platforms is [-2³¹, 2³¹-1].</p>
+<h2 id="32-Bit-Platforms"><a href="#32-Bit-Platforms" class="headerlink" title="32-Bit Platforms"></a>32-Bit Platforms</h2><p>On 32-bit platforms, <code>kSmiValueSize = 31</code>. So we shift by 30, and end up with <code>kMinValue = -2^30</code>. Note, 2³⁰≈ 10⁹.</p>
+<p>Why is the range for <code>Smis</code> one bit smaller on 32-bit platforms? <a href="https://github.com/v8/v8/blob/a9e3d9c7ec1345085c861af76e508d9591634530/include/v8.h#L177" target="_blank" rel="noopener">Internally</a>, V8 tags all JavaScript values as either <code>Smis</code> or heap objects using the least significant bit. If it is <code>1</code>, it is a pointer. If the least significant bit is a <code>0</code>, it is a <code>Smi</code>. That means that 32-bit integers can use only 31 bits for the <code>Smi</code> value, because one bit is used as the tag.</p>
+<p><strong>V8 tags all values as either Smis or heap pointers using the least significant bit.</strong></p>
+<p><code>Smis</code> are not as small as you might have thought, but they easily fit into a 32-bit or 64-bit integer together with their encoding bit.</p>
+<p><em>Bonus question: Given a non-empty array of integers, every element appears twice except for one. Find that single one. Can you use binary representation for a linear time, constant space solution?</em></p>
+<p>I like to use a <a href="http://geni.us/xEAH5B" target="_blank" rel="noopener">dotted Leuchturm1917</a> and <a href="http://geni.us/VCuvX" target="_blank" rel="noopener">Pigma Microns</a> for my notes.</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/speaking/">Public speaking</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#When-binary-is-useful-outside-of-a-coding-interview"><span class="toc-number">1.</span> <span class="toc-text">When binary is useful outside of a coding interview</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Left-Shift"><span class="toc-number"></span> <span class="toc-text">Left Shift</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Static-Cast-to-an-Unsigned-Integer"><span class="toc-number"></span> <span class="toc-text">Static Cast to an Unsigned Integer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting-it-All-Together"><span class="toc-number"></span> <span class="toc-text">Putting it All Together</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32-Bit-Platforms"><span class="toc-number"></span> <span class="toc-text">32-Bit Platforms</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&text=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&name=V8 Internals: How Small is a “Small Integer?”&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Franziska Hinkelmann
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/speaking/">Public speaking</a></li>
+         
+          <li><a href="/archives/">Blog</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-111379301-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'fhinkel';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
