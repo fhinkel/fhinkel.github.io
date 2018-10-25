@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2018-10-25T09:37:28.750Z</updated>
+  <updated>2018-10-25T09:39:00.951Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/"/>
     <id>http://fhinkel.rocks/2018/10/25/Understanding-npm-link/</id>
     <published>2018-10-25T09:12:01.000Z</published>
-    <updated>2018-10-25T09:37:28.750Z</updated>
+    <updated>2018-10-25T09:39:00.951Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h3 id=&quot;Simultaneously-Working-on-Application-and-Dependency&quot;&gt;&lt;a href=&quot;#Simultaneously-Working-on-Application-and-Dependency&quot;
+          &lt;h4 id=&quot;Simultaneously-Working-on-Application-and-Dependency&quot;&gt;&lt;a href=&quot;#Simultaneously-Working-on-Application-and-Dependency&quot;
         
       
     

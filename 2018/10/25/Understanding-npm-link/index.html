@@ -15,7 +15,7 @@
 <meta property="og:description" content="Simultaneously Working on Application and DependencySometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test c">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/images/hinkelmannSmall.jpeg">
-<meta property="og:updated_time" content="2018-10-25T09:37:28.750Z">
+<meta property="og:updated_time" content="2018-10-25T09:39:00.951Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding npm-link">
 <meta name="twitter:description" content="Simultaneously Working on Application and DependencySometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test c">
@@ -102,7 +102,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Usage"><span class="toc-number">2.</span> <span class="toc-text">Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number"></span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
     </div>
   </span>
 </div>
@@ -139,10 +139,10 @@
     </div>
   </header>
   <div class="content" itemprop="articleBody">
-    <h3 id="Simultaneously-Working-on-Application-and-Dependency"><a href="#Simultaneously-Working-on-Application-and-Dependency" class="headerlink" title="Simultaneously Working on Application and Dependency"></a>Simultaneously Working on Application and Dependency</h3><p>Sometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test coverage yet. The application can serve as an end-to-end test for the dependency. Maybe you need to debug an issue in your application and the problem seems to be in the dependency sources.</p>
+    <h4 id="Simultaneously-Working-on-Application-and-Dependency"><a href="#Simultaneously-Working-on-Application-and-Dependency" class="headerlink" title="Simultaneously Working on Application and Dependency"></a>Simultaneously Working on Application and Dependency</h4><p>Sometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test coverage yet. The application can serve as an end-to-end test for the dependency. Maybe you need to debug an issue in your application and the problem seems to be in the dependency sources.</p>
 <img src="/2018/10/25/Understanding-npm-link/img1.png">
 <p>You could make changes in <code>node_modules</code> and manually copy the changes to the <code>git</code> repository of the dependency once you are done. But there is a much cleaner approach: <code>npm link</code>.</p>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Package linking is a two-step process:</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Package linking is a two-step process:</p>
 <ol>
 <li>Create a global symlink for a dependency with <code>npm link</code>. A <strong>symlink</strong>, short for symbolic link, is a shortcut that points to another directory or file on your system.</li>
 <li>Tell the application to use the global symlink with <code>npm link some-dep</code>.</li>
@@ -189,7 +189,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Usage"><span class="toc-number">2.</span> <span class="toc-text">Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number"></span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
     </div>
 
     <div id="share-footer" style="display: none">
