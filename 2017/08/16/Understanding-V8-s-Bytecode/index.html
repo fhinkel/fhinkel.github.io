@@ -177,7 +177,7 @@ Constant pool (size = 1)
            0: 0x2ddf8db91611 &lt;String[1]: x&gt;
 Handler Table (size = 16)
 </code></pre><p>We can ignore most of the output and focus on the actual bytecodes. Here is what eachbytecode means, line by line.</p>
-<h3 id="LdaSmi-1"><a href="#LdaSmi-1" class="headerlink" title="LdaSmi [1]"></a>LdaSmi [1]</h3><p><code>LdaSmi`` [1]</code> loads the constant value <code>1</code> in the accumulator.</p>
+<h3 id="LdaSmi-1"><a href="#LdaSmi-1" class="headerlink" title="LdaSmi [1]"></a>LdaSmi [1]</h3><p><code>LdaSmi`</code> [1]<code>loads the constant value</code>1` in the accumulator.</p>
 <img src="/2017/08/16/Understanding-V8-s-Bytecode/smallImage1.png">
 <h3 id="Star-r0"><a href="#Star-r0" class="headerlink" title="Star r0"></a>Star r0</h3><p>Next, <code>Star r0</code> stores the value that is currently in the accumulator, <code>1,</code> in the register <code>r0</code>.</p>
 <img src="/2017/08/16/Understanding-V8-s-Bytecode/smallImage2.png">
