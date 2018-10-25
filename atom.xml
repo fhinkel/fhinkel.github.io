@@ -47,6 +47,32 @@
   </entry>
   
   <entry>
+    <title>V8 Internals: How Small is a “Small Integer?”</title>
+    <link href="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/"/>
+    <id>http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/</id>
+    <published>2018-09-03T10:08:48.000Z</published>
+    <updated>2018-10-25T10:24:23.598Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;When-binary-is-useful-outside-of-a-coding-interview&quot;&gt;&lt;a href=&quot;#When-binary-is-useful-outside-of-a-coding-interview&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="algorithms" scheme="http://fhinkel.rocks/tags/algorithms/"/>
+    
+      <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Speed up Your Node.js App with Native Addons</title>
     <link href="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"/>
     <id>http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/</id>
