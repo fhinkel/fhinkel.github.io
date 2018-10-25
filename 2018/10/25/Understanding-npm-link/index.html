@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Simultaneously Working on Application and DependencySometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test c">
-<meta name="keywords" content="nodejs,git,JavaScript,npm,npm link">
+<meta name="keywords" content="nodejs,git,JavaScript,npm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Understanding npm-link">
 <meta property="og:url" content="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/index.html">
@@ -15,7 +15,7 @@
 <meta property="og:description" content="Simultaneously Working on Application and DependencySometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test c">
 <meta property="og:locale" content="english">
 <meta property="og:image" content="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/images/hinkelmannSmall.jpeg">
-<meta property="og:updated_time" content="2018-10-25T09:30:22.163Z">
+<meta property="og:updated_time" content="2018-10-25T09:37:28.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding npm-link">
 <meta name="twitter:description" content="Simultaneously Working on Application and DependencySometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test c">
@@ -102,7 +102,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number"></span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging"><span class="toc-number"></span> <span class="toc-text">Debugging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Usage"><span class="toc-number">2.</span> <span class="toc-text">Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
     </div>
   </span>
 </div>
@@ -132,7 +132,7 @@
       
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/git/">git</a>, <a class="tag-link" href="/tags/nodejs/">nodejs</a>, <a class="tag-link" href="/tags/npm/">npm</a>, <a class="tag-link" href="/tags/npm-link/">npm link</a>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tag-link" href="/tags/git/">git</a>, <a class="tag-link" href="/tags/nodejs/">nodejs</a>, <a class="tag-link" href="/tags/npm/">npm</a>
     </div>
 
 
@@ -142,32 +142,19 @@
     <h3 id="Simultaneously-Working-on-Application-and-Dependency"><a href="#Simultaneously-Working-on-Application-and-Dependency" class="headerlink" title="Simultaneously Working on Application and Dependency"></a>Simultaneously Working on Application and Dependency</h3><p>Sometimes you need to work on application code and a dependency at the same time. You might be the author of a dependency and don’t have good test coverage yet. The application can serve as an end-to-end test for the dependency. Maybe you need to debug an issue in your application and the problem seems to be in the dependency sources.</p>
 <img src="/2018/10/25/Understanding-npm-link/img1.png">
 <p>You could make changes in <code>node_modules</code> and manually copy the changes to the <code>git</code> repository of the dependency once you are done. But there is a much cleaner approach: <code>npm link</code>.</p>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Package linking is a two-step process:</p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>Package linking is a two-step process:</p>
 <ol>
 <li>Create a global symlink for a dependency with <code>npm link</code>. A <strong>symlink</strong>, short for symbolic link, is a shortcut that points to another directory or file on your system.</li>
 <li>Tell the application to use the global symlink with <code>npm link some-dep</code>.</li>
 </ol>
-<pre><code>cd ~/projects/some-dep
-npm link  # Step 1.
-cd ~/projects/my-app
-npm link some-dep  # Step 2.
-</code></pre><img src="/2018/10/25/Understanding-npm-link/img2.png">
-<p>You can edit, transpile, run tests, or commit as usual in <code>some-dep</code>. All while <code>my-app</code> runs with the changes you made to <code>some-dep</code>. The symbolic links are local and will not be committed to <code>git</code>. When you are ready to share your code, publish a new version of <code>some-dep</code> or push to a branch that you specify in <code>my-app</code>’s <code>package.json</code>:</p>
-<pre><code>cd ~/projects/my-app
-npm install — save some-dep@fhinkel/some-dep#experimental-branch
-</code></pre><h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><p>If you use <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> and want to set breakpoints in <code>some-dep</code>, you need to enable symlinks in the debugger for <code>my-app</code>. Do so by setting</p>
-<pre><code>“runtimeArgs”: [
-  “--preserve-symlinks”
-]
-</code></pre><p>in <code>launch.json</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/projects/some-dep</span><br><span class="line">npm link  <span class="comment"># Step 1.</span></span><br><span class="line"><span class="built_in">cd</span> ~/projects/my-app</span><br><span class="line">npm link some-dep  <span class="comment"># Step 2.</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&#123;% asset_img img2.png %&#125;</span><br><span class="line"></span><br><span class="line">You can edit, transpile, run tests, or commit as usual <span class="keyword">in</span> `some-dep`. All <span class="keyword">while</span> `my-app` runs with the changes you made to `some-dep`. The symbolic links are <span class="built_in">local</span> and will not be committed to `git`. When you are ready to share your code, publish a new version of `some-dep` or push to a branch that you specify <span class="keyword">in</span> `my-app`’s `package.json`:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cd</span> ~/projects/my-app</span><br><span class="line">    npm install — save some-dep@fhinkel/some-dep<span class="comment">#experimental-branch</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Debugging</span></span><br><span class="line">If you use [VSCode](https://code.visualstudio.com/) and want to <span class="built_in">set</span> breakpoints <span class="keyword">in</span> `some-dep`, you need to <span class="built_in">enable</span> symlinks <span class="keyword">in</span> the debugger <span class="keyword">for</span> `my-app`. Do so by setting</span><br><span class="line"></span><br><span class="line">``` js</span><br><span class="line">“runtimeArgs”: [</span><br><span class="line">  “--preserve-symlinks”</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>in <code>launch.json</code>.</p>
 <img src="/2018/10/25/Understanding-npm-link/img3.png" title="Enable symlinks in debug configuration in Code">
 <h2 id="Back-to-Normal"><a href="#Back-to-Normal" class="headerlink" title="Back to Normal"></a>Back to Normal</h2><p>How do you switch back to <em>normal</em> dependencies? When you don’t want to use the local version of <code>some-de</code>p anymore, delete the symlink. But careful, <code>npm unlink</code> is an alias for <code>npm uninstall</code>, it does not mirror the behavior of <code>npm link</code>.</p>
-<pre><code>cd ~/projects/my-app
-npm uninstall --no-save some-dep &amp;&amp; npm install 
-</code></pre><p>You can clean up the global link, though its presence won’t interfere with <code>my-app</code>.</p>
-<pre><code>cd ~/projects/some-dep
-npm uninstall  # Delete global symlink
-</code></pre><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I used <code>npm link</code> while working on dependencies of the <a href="https://github.com/googleapis/google-cloud-node" target="_blank" rel="noopener">client libraries</a> for Google Cloud Platform. All our libraries use the module <code>@google-cloud/common</code>. In some cases I needed to immediately see the changes in the larger libraries instead of in isolation in <code>common</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/projects/my-app</span><br><span class="line">npm uninstall --no-save some-dep &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+<p>You can clean up the global link, though its presence won’t interfere with <code>my-app</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/projects/some-dep</span><br><span class="line">npm uninstall  <span class="comment"># Delete global symlink</span></span><br></pre></td></tr></table></figure>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>I used <code>npm link</code> while working on dependencies of the <a href="https://github.com/googleapis/google-cloud-node" target="_blank" rel="noopener">client libraries</a> for Google Cloud Platform. All our libraries use the module <code>@google-cloud/common</code>. In some cases I needed to immediately see the changes in the larger libraries instead of in isolation in <code>common</code>.</p>
 <p><strong>Mastering the two-step process of <code>npm link</code> is a useful addition to the toolset of any Node.js developer.</strong> The process consists of running <code>npm link</code> in the dependency, and <code>npm link some-dep</code> in the application.</p>
 <p><em>Huge thanks to Peter Marshall and Alexander Fenster for helping review this post.</em></p>
 
@@ -202,7 +189,7 @@ npm uninstall  # Delete global symlink
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-number"></span> <span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging"><span class="toc-number"></span> <span class="toc-text">Debugging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Simultaneously-Working-on-Application-and-Dependency"><span class="toc-number">1.</span> <span class="toc-text">Simultaneously Working on Application and Dependency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Usage"><span class="toc-number">2.</span> <span class="toc-text">Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Back-to-Normal"><span class="toc-number"></span> <span class="toc-text">Back to Normal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number"></span> <span class="toc-text">Conclusion</span></a>
     </div>
 
     <div id="share-footer" style="display: none">

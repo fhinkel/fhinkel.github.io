@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2018-10-25T09:30:22.163Z</updated>
+  <updated>2018-10-25T09:37:28.750Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/"/>
     <id>http://fhinkel.rocks/2018/10/25/Understanding-npm-link/</id>
     <published>2018-10-25T09:12:01.000Z</published>
-    <updated>2018-10-25T09:30:22.163Z</updated>
+    <updated>2018-10-25T09:37:28.750Z</updated>
     
     <summary type="html">
     
@@ -43,8 +43,6 @@
       <category term="JavaScript" scheme="http://fhinkel.rocks/tags/JavaScript/"/>
     
       <category term="npm" scheme="http://fhinkel.rocks/tags/npm/"/>
-    
-      <category term="npm link" scheme="http://fhinkel.rocks/tags/npm-link/"/>
     
   </entry>
   
@@ -177,7 +175,7 @@
     <link href="http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/"/>
     <id>http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/</id>
     <published>2017-07-30T04:00:00.000Z</published>
-    <updated>2017-12-24T11:40:16.000Z</updated>
+    <updated>2018-10-25T09:38:05.768Z</updated>
     
     <summary type="html">
     
@@ -194,6 +192,8 @@
     
       <category term="V8" scheme="http://fhinkel.rocks/tags/V8/"/>
     
+      <category term="open-source" scheme="http://fhinkel.rocks/tags/open-source/"/>
+    
   </entry>
   
   <entry>
@@ -201,7 +201,7 @@
     <link href="http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/"/>
     <id>http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/</id>
     <published>2017-03-25T04:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2018-10-25T09:38:26.956Z</updated>
     
     <summary type="html">
     
@@ -217,6 +217,8 @@
     
     
       <category term="nodejs" scheme="http://fhinkel.rocks/tags/nodejs/"/>
+    
+      <category term="open-source" scheme="http://fhinkel.rocks/tags/open-source/"/>
     
   </entry>
   
@@ -251,7 +253,7 @@
     <link href="http://fhinkel.rocks/2017/01/01/hello-world/"/>
     <id>http://fhinkel.rocks/2017/01/01/hello-world/</id>
     <published>2017-01-01T05:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2018-10-25T09:37:53.107Z</updated>
     
     <summary type="html">
     
@@ -265,6 +267,8 @@
     
     </summary>
     
+    
+      <category term="blogging" scheme="http://fhinkel.rocks/tags/blogging/"/>
     
   </entry>
   
