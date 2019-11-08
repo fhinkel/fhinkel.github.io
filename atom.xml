@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2018-10-25T09:41:38.970Z</updated>
+  <updated>2019-11-08T13:12:29.468Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>How I learned to love the terminal</title>
+    <link href="http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"/>
+    <id>http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/</id>
+    <published>2019-11-08T13:38:57.000Z</published>
+    <updated>2019-11-08T13:12:29.468Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;em&gt;An introduction to the command line.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Are you unfamiliar with the command line? Here are some tips that’ll make working
+        
+      
+    
+    </summary>
+    
+    
+      <category term="bash," scheme="http://fhinkel.rocks/tags/bash/"/>
+    
+      <category term="terminal" scheme="http://fhinkel.rocks/tags/terminal/"/>
+    
+      <category term="beginners" scheme="http://fhinkel.rocks/tags/beginners/"/>
+    
+      <category term="linux" scheme="http://fhinkel.rocks/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Understanding npm-link</title>
     <link href="http://fhinkel.rocks/2018/10/25/Understanding-npm-link/"/>
     <id>http://fhinkel.rocks/2018/10/25/Understanding-npm-link/</id>
     <published>2018-10-25T09:12:01.000Z</published>
-    <updated>2018-10-25T09:41:38.970Z</updated>
+    <updated>2019-11-08T07:28:38.918Z</updated>
     
     <summary type="html">
     
@@ -51,7 +82,7 @@
     <link href="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/"/>
     <id>http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/</id>
     <published>2018-09-03T10:08:48.000Z</published>
-    <updated>2018-10-25T10:42:43.142Z</updated>
+    <updated>2019-11-08T07:28:38.921Z</updated>
     
     <summary type="html">
     
@@ -77,7 +108,7 @@
     <link href="http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/"/>
     <id>http://fhinkel.rocks/2017/12/07/Speed-up-Your-Node-js-App-with-Native-Addons/</id>
     <published>2017-12-07T05:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2019-11-08T07:28:38.912Z</updated>
     
     <summary type="html">
     
@@ -103,7 +134,7 @@
     <link href="http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/"/>
     <id>http://fhinkel.rocks/2017/11/26/New-in-VS-Code-Inline-Change-Review/</id>
     <published>2017-11-26T05:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2019-11-08T07:28:38.905Z</updated>
     
     <summary type="html">
     
@@ -127,7 +158,7 @@
     <link href="http://fhinkel.rocks/2017/10/30/Confused-about-Stack-and-Heap/"/>
     <id>http://fhinkel.rocks/2017/10/30/Confused-about-Stack-and-Heap/</id>
     <published>2017-10-30T04:00:00.000Z</published>
-    <updated>2017-12-24T10:55:44.000Z</updated>
+    <updated>2019-11-08T07:28:38.900Z</updated>
     
     <summary type="html">
     
@@ -151,7 +182,7 @@
     <link href="http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/"/>
     <id>http://fhinkel.rocks/2017/09/17/Runtime-type-information-for-JavaScript/</id>
     <published>2017-09-17T04:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2019-11-08T07:28:38.908Z</updated>
     
     <summary type="html">
     
@@ -175,7 +206,7 @@
     <link href="http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/"/>
     <id>http://fhinkel.rocks/2017/08/16/Understanding-V8-s-Bytecode/</id>
     <published>2017-08-16T04:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2019-11-08T07:28:38.915Z</updated>
     
     <summary type="html">
     
@@ -201,7 +232,7 @@
     <link href="http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/"/>
     <id>http://fhinkel.rocks/2017/07/30/How-do-I-get-Started-with-V8-Development/</id>
     <published>2017-07-30T04:00:00.000Z</published>
-    <updated>2018-10-25T09:38:05.768Z</updated>
+    <updated>2019-11-08T07:28:38.903Z</updated>
     
     <summary type="html">
     
@@ -227,7 +258,7 @@
     <link href="http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/"/>
     <id>http://fhinkel.rocks/2017/03/25/Tools-for-Node-js-Contributors/</id>
     <published>2017-03-25T04:00:00.000Z</published>
-    <updated>2018-10-25T09:38:26.956Z</updated>
+    <updated>2019-11-08T07:28:38.914Z</updated>
     
     <summary type="html">
     
@@ -253,7 +284,7 @@
     <link href="http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/"/>
     <id>http://fhinkel.rocks/2017/01/17/Debug-V8-in-Node-js-Core-with-GDB/</id>
     <published>2017-01-17T05:00:00.000Z</published>
-    <updated>2017-12-24T10:27:58.000Z</updated>
+    <updated>2019-11-08T07:28:38.903Z</updated>
     
     <summary type="html">
     
@@ -279,7 +310,7 @@
     <link href="http://fhinkel.rocks/2017/01/01/hello-world/"/>
     <id>http://fhinkel.rocks/2017/01/01/hello-world/</id>
     <published>2017-01-01T05:00:00.000Z</published>
-    <updated>2018-10-25T09:37:53.107Z</updated>
+    <updated>2019-11-08T07:28:38.922Z</updated>
     
     <summary type="html">
     
