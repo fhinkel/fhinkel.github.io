@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="An introduction to the command line. Are you unfamiliar with the command line? Here are some tips that’ll make working in the terminal much easier. Shortcuts instead of typing full commandsUse the arr">
+<meta name="keywords" content="bash,,terminal,beginners,linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How I learned to love the terminal">
+<meta property="og:url" content="http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/index.html">
+<meta property="og:site_name" content="Franziska Hinkelmann, Ph.D">
+<meta property="og:description" content="An introduction to the command line. Are you unfamiliar with the command line? Here are some tips that’ll make working in the terminal much easier. Shortcuts instead of typing full commandsUse the arr">
+<meta property="og:locale" content="english">
+<meta property="og:image" content="http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/images/hinkelmannSmall.jpeg">
+<meta property="og:updated_time" content="2019-11-08T07:46:30.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How I learned to love the terminal">
+<meta name="twitter:description" content="An introduction to the command line. Are you unfamiliar with the command line? Here are some tips that’ll make working in the terminal much easier. Shortcuts instead of typing full commandsUse the arr">
+<meta name="twitter:image" content="http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/images/hinkelmannSmall.jpeg">
+<meta name="twitter:creator" content="@fhinkel">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How I learned to love the terminal</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/atom.xml" title="Franziska Hinkelmann, Ph.D" type="application/atom+xml" />
+    
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/speaking/">Public Speaking</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/10/25/Understanding-npm-link/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&text=How I learned to love the terminal"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&is_video=false&description=How I learned to love the terminal"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How I learned to love the terminal&body=Check out this article: http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&name=How I learned to love the terminal&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shortcuts-instead-of-typing-full-commands"><span class="toc-number">1.</span> <span class="toc-text">Shortcuts instead of typing full commands</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How I learned to love the terminal
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Franziska Hinkelmann, Ph.D</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-11-08T13:38:57.000Z" itemprop="datePublished">2019-11-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/bash/">bash,</a>, <a class="tag-link" href="/tags/beginners/">beginners</a>, <a class="tag-link" href="/tags/linux/">linux</a>, <a class="tag-link" href="/tags/terminal/">terminal</a>
+    </div>
+
+
+    </div>
+  </header>
+  <div class="content" itemprop="articleBody">
+    <p><em>An introduction to the command line.</em></p>
+<p>Are you unfamiliar with the command line? Here are some tips that’ll make working in the terminal much easier.</p>
+<h1 id="Shortcuts-instead-of-typing-full-commands"><a href="#Shortcuts-instead-of-typing-full-commands" class="headerlink" title="Shortcuts instead of typing full commands"></a>Shortcuts instead of typing full commands</h1><p>Use the <strong>arrow up</strong> and <strong>arrow down</strong> keys to iterate over the last used commands. </p>
+<p>Use <strong>tab completion</strong> to complete commands, directories and files, and even some parameters. Start typing one or two characters of a command. Then hit tab twice. If that gives you several options, type a few more letters and then hit tab again. You should never type out a full filename. Use tab aggressivly. It’s muscle memory you need to build if you want to be fast on the command line.</p>
+<p>If you remember parts of a command, not necessarily the beginning, you can search for that command with <strong>Ctrl R</strong>. Type Ctrl R, this starts <strong>reverse-i-search</strong>. Then start typing your command. You’ll see a suggestion. You can keep typing to further refine your search results or hit Ctrl R to cycle through the commands that match the search query in reverse order. </p>
+<p>#Navigate around</p>
+<p>Use <code>cd ..</code> to navigate up one directory. Use <code>cd</code> to jump to your home directory. This is the same as <code>cd ~/</code>. Use <code>cd /</code> to jump to the root directory and <code>cd -</code> to go back to the last directory. </p>
+<p>Jump to the beginning and end of the line with <strong>Ctrl A</strong> and <strong>Ctrl E</strong>.</p>
+<p>When you realize that you’re typing the wrong command, use <strong>Ctrl C</strong> to start over. This is faster than deleting the command character by character.  </p>
+<p>#Hidden config files</p>
+<p>To see hidden files, i.e., filenames that start with a dot, use <code>ls -la</code>. Check out the hidden .gitconfig in your home directory. Or edit the .gitignore file in a git project to exclude files from revision control. You can configure a lot of tools via a dot file. Many follow the convention of the config file name ending in rc (“run command”), like .npmrc for npm config settings. </p>
+<p>#Configure your terminal</p>
+<p>The config file .bash_profile determines how your terminal, more specifically bash, behaves¹. The .bash_profile file is in your home directory (<code>~/</code>) . In this file you can do things like</p>
+<ul>
+<li>specify shortcuts with <code>alias</code>,</li>
+<li>configure your prompt, </li>
+<li>set environment variables.</li>
+</ul>
+<p>#Git on the command line</p>
+<p>If you use git on the command line, there are a few tricks to make your life easier. Enable tab completion for git and configure custom shortcuts like <code>git co</code> instead of <code>git checkout</code>. For me, the most important feature is to always see what branch I’m on. </p>
+<img src="/2019/11/08/How-I-learned-to-love-the-terminal/terminal.png">
+<p>My bash shows the current directory and the branch I’m on if I’m in a git directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Configuration in .bash_profile</span><br><span class="line"></span><br><span class="line"># The next line enables git autocompletion</span><br><span class="line">. ~/.git-completion.bash</span><br><span class="line"></span><br><span class="line"># The next lines configures a fancy prompt</span><br><span class="line">. ~/.git-prompt.sh</span><br><span class="line">export GIT_PS1_SHOWDIRTYSTATE=1</span><br><span class="line">export PS1=&apos;\[\e[35m\]\w$(__git_ps1 &quot; (%s)&quot;)\$\[\e[0m\] &apos;</span><br></pre></td></tr></table></figure>
+<p>Download the scripts from the git source code mirror and follow the instructions:  <a href="https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh" target="_blank" rel="noopener">.git-prompt.sh</a> and <a href="https://github.com/git/git/blob/master/contrib/completion/git-completion.bash" target="_blank" rel="noopener">.git-completion.bash</a>.<br>You can change the color of the prompt. I use different colors on different machines to easily see what machine I’m ssh’ed into.</p>
+<p>#Most importantly </p>
+<p>Be adventurous. Don’t let the terminal intimidate you! Once you know some basics, it’s easy to work efficiently with the command line. Search <a href="https://stackoverflow.com/questions/tagged/command-line" target="_blank" rel="noopener">StackOverflow</a> for tips to make things even easier. Read through other people’s config files (mine are <a href="https://github.com/fhinkel/configs" target="_blank" rel="noopener">here</a>). Go explore and try a few things. Lots of tips are really helpful, you just need to find those that work for you.</p>
+<p>¹ .bash_profile is the default config for bash on MacOS. On Linux, use .bashrc.</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/speaking/">Public Speaking</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shortcuts-instead-of-typing-full-commands"><span class="toc-number">1.</span> <span class="toc-text">Shortcuts instead of typing full commands</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&text=How I learned to love the terminal"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&is_video=false&description=How I learned to love the terminal"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How I learned to love the terminal&body=Check out this article: http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&title=How I learned to love the terminal"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/&name=How I learned to love the terminal&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Franziska Hinkelmann
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/speaking/">Public Speaking</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-111379301-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'fhinkel';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
