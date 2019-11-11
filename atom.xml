@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2019-11-08T13:16:50.280Z</updated>
+  <updated>2019-11-11T06:49:27.678Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/"/>
     <id>http://fhinkel.rocks/2019/11/08/How-I-learned-to-love-the-terminal/</id>
     <published>2019-11-08T13:38:57.000Z</published>
-    <updated>2019-11-08T13:16:50.280Z</updated>
+    <updated>2019-11-11T06:49:27.678Z</updated>
     
     <summary type="html">
     
@@ -30,7 +30,7 @@
         
         
           &lt;p&gt;&lt;em&gt;An introduction to the command line.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Are you unfamiliar with the command line? Here are some tips that’ll make working
+&lt;p&gt;it’s almost always available (unlike some GUI tools that must be installed); some
         
       
     
