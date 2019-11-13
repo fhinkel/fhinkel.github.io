@@ -10,16 +10,14 @@
 <meta name="keywords" content="algorithms,V8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="V8 Internals: How Small is a “Small Integer?”">
-<meta property="og:url" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;fhinkel.rocks&#x2F;2018&#x2F;09&#x2F;03&#x2F;V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D&#x2F;index.html">
 <meta property="og:site_name" content="Franziska Hinkelmann, Ph.D">
 <meta property="og:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
 <meta property="og:locale" content="english">
-<meta property="og:image" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/images/hinkelmannSmall.jpeg">
-<meta property="og:updated_time" content="2018-10-25T10:42:43.142Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;fhinkel.rocks&#x2F;2018&#x2F;09&#x2F;03&#x2F;V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D&#x2F;images&#x2F;hinkelmannSmall.jpeg">
+<meta property="og:updated_time" content="2019-11-08T07:28:38.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="V8 Internals: How Small is a “Small Integer?”">
-<meta name="twitter:description" content="When binary is useful outside of a coding interviewThis article is available in Chinese. V8 is Google’s open source JavaScript engine. Chrome, Node.js, and many other applications embed V8. If you hav">
-<meta name="twitter:image" content="http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/images/hinkelmannSmall.jpeg">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;fhinkel.rocks&#x2F;2018&#x2F;09&#x2F;03&#x2F;V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D&#x2F;images&#x2F;hinkelmannSmall.jpeg">
 <meta name="twitter:creator" content="@fhinkel">
     
     
@@ -90,16 +88,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&text=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&name=V8 Internals: How Small is a “Small Integer?”&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&text=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&name=V8 Internals: How Small is a “Small Integer?”&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -134,7 +132,7 @@
       
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/V8/">V8</a>, <a class="tag-link" href="/tags/algorithms/">algorithms</a>
+        <a class="tag-link" href="/tags/V8/" rel="tag">V8</a>, <a class="tag-link" href="/tags/algorithms/" rel="tag">algorithms</a>
     </div>
 
 
@@ -161,13 +159,9 @@
 <p>That is easy, <code>kSmiMaxValue = -(-2^31+1) = 2^31-1</code>. The range for <code>Smis</code> in V8 on 64-bit platforms is [-2³¹, 2³¹-1].</p>
 <h2 id="32-Bit-Platforms"><a href="#32-Bit-Platforms" class="headerlink" title="32-Bit Platforms"></a>32-Bit Platforms</h2><p>On 32-bit platforms, <code>kSmiValueSize = 31</code>. So we shift by 30, and end up with <code>kMinValue = -2^30</code>. Note, 2³⁰≈ 10⁹.</p>
 <p>Why is the range for <code>Smis</code> one bit smaller on 32-bit platforms? <a href="https://github.com/v8/v8/blob/a9e3d9c7ec1345085c861af76e508d9591634530/include/v8.h#L177" target="_blank" rel="noopener">Internally</a>, V8 tags all JavaScript values as either <code>Smis</code> or heap objects using the least significant bit. If it is <code>1</code>, it is a pointer. If the least significant bit is a <code>0</code>, it is a <code>Smi</code>. That means that 32-bit integers can use only 31 bits for the <code>Smi</code> value, because one bit is used as the tag.</p>
-<blockquote>
-<p>V8 tags all values as either Smis or heap pointers using the least significant bit.</p>
-</blockquote>
+<p><strong>V8 tags all values as either Smis or heap pointers using the least significant bit.</strong></p>
 <p><code>Smis</code> are not as small as you might have thought, but they easily fit into a 32-bit or 64-bit integer together with their encoding bit.</p>
-<blockquote>
-<p>Bonus question: Given a non-empty array of integers, every element appears twice except for one. Find that single one. Can you use binary representation for a linear time, constant space solution?</p>
-</blockquote>
+<p><em>Bonus question: Given a non-empty array of integers, every element appears twice except for one. Find that single one. Can you use binary representation for a linear time, constant space solution?</em></p>
 <p>I like to use a <a href="http://geni.us/xEAH5B" target="_blank" rel="noopener">dotted Leuchturm1917</a> and <a href="http://geni.us/VCuvX" target="_blank" rel="noopener">Pigma Microns</a> for my notes.</p>
 
   </div>
@@ -206,16 +200,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&text=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&title=V8 Internals: How Small is a “Small Integer?”"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-“Small-Integer-”/&name=V8 Internals: How Small is a “Small Integer?”&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&text=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&is_video=false&description=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=V8 Internals: How Small is a “Small Integer?”&body=Check out this article: http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&title=V8 Internals: How Small is a “Small Integer?”" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://fhinkel.rocks/2018/09/03/V8-Internals-How-Small-is-a-%E2%80%9CSmall-Integer-%E2%80%9D/&name=V8 Internals: How Small is a “Small Integer?”&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -235,7 +229,7 @@
     
     <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2018 Franziska Hinkelmann
+    Copyright &copy; 2019 Franziska Hinkelmann
   </div>
   <div class="footer-right">
     <nav>
