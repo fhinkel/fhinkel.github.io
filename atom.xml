@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fhinkel.rocks/"/>
-  <updated>2022-02-27T01:11:47.192Z</updated>
+  <updated>2022-02-27T21:28:01.830Z</updated>
   <id>http://fhinkel.rocks/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode: Container With Most Water</title>
+    <link href="http://fhinkel.rocks/2022/02/27/Leetcode-Container-With-Most-Water/"/>
+    <id>http://fhinkel.rocks/2022/02/27/Leetcode-Container-With-Most-Water/</id>
+    <published>2022-02-27T21:01:24.000Z</published>
+    <updated>2022-02-27T21:28:01.830Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;I love solving &lt;a href=&quot;https://leetcode.com/problemset/all/&quot;&gt;Leetcode&lt;/a&gt; coding problems for fun. I came across this problem and was
+        
+      
+    
+    </summary>
+    
+    
+      <category term="algorithms" scheme="http://fhinkel.rocks/tags/algorithms/"/>
+    
+      <category term="JavaScript" scheme="http://fhinkel.rocks/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>How I learned to love the terminal</title>
